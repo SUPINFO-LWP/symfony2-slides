@@ -5,10 +5,10 @@ branches:
 language: python
 
 install:
-  - sudo pip install -q pygments landslide Jinja2 markdown
+  - sudo pip install -q pygments landslide jinja2 markdown
 
 before_script:
-  - openssl des3 -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
+  - openssl des3 -d -a -in .travis/ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
 
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
@@ -18,7 +18,7 @@ before_script:
   - git config --global user.email adrien.brault@gmail.com
 
 script:
-  - for file in `ls *.cfg`; do landslide $file; done
+  - sh -c "find . -name \"*.cfg\" -exec landslide {} \;"
 
 after_script:
   - git checkout --orphan gh-pages
