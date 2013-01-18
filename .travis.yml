@@ -13,7 +13,8 @@ script:
 after_script:
   - openssl -aes-256-cbc -d -a -in ssh_deploy_key.enc -k $SSH_KEY_SECRET > ~/.ssh/id_rsa
 
-  - git remote add deploy ssh://git@github.com:SUPINFO-LWP/symfony2-slides.git
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config # Disable SSH server fingerprint verification
+  - git remote add deploy git@github.com:SUPINFO-LWP/symfony2-slides.git
 
   - ./deploy.sh
 
