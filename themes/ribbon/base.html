@@ -39,13 +39,13 @@
                 {% if slide.content %}
                     <section class="slide-content">{{ slide.content }}</section>
                 {% endif %}
+                {% if slide.presenter_notes %}
                 <div class="presenter_notes">
                     <section>
-                    {% if slide.presenter_notes %}
                         {{ slide.presenter_notes }}
-                    {% endif %}
                     </section>
                 </div>
+                {% endif %}
             </div>
         </section>
      {% endfor %}

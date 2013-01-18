@@ -1,0 +1,9 @@
+.slide header:only-child h1 {
+    line-height: 180%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    height: 745px;
+    width: 768px;
+    font-size: 240%;
+}
