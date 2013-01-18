@@ -9,7 +9,6 @@ before_script:
 
 script:
   - for config in `ls *.cfg`; do landslide $config; done
-  - cat *.html
 
 after_script:
   - openssl aes-256-cbc -d -a -in ssh_key.enc -k $SSH_KEY_SECRET > .ssh/id_rsa
