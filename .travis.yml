@@ -5,7 +5,7 @@ branches:
 language: python
 
 before_script:
-  - echo "$FOO"
+  - sh -c "echo $FOO"
   - sudo pip install -q pygments landslide Jinja2 markdown
 
 script:
