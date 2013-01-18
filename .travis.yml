@@ -1,0 +1,12 @@
+branches:
+  only:
+    - master
+
+language: python
+
+before_script:
+  - pip install pygments landslide Jinja2 markdown
+
+script:
+  - find . -name "*.cfg" -exec landslide {} \;
+  - cat *.html
