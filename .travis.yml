@@ -8,7 +8,7 @@ before_script:
   - sudo pip install pygments landslide Jinja2 markdown
 
 script:
-  - find . -name "*.cfg" -exec landslide {} \;
+  - for config in `ls *.cfg`; do landslide $config; done
   - cat *.html
 
 after_script:
