@@ -4,21 +4,26 @@ branches:
 
 language: python
 
-before_script:
-  - sh -c "echo $FOO"
-  - echo $TRAVIS
-  - sh -c "echo $TRAVIS"
+install:
   - sudo pip install -q pygments landslide Jinja2 markdown
 
-script:
-  - for config in `ls *.cfg`; do landslide $config; done
-
-after_script:
+before_script:
   - openssl des3 -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
-  - chmod 700 ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git remote add deploy git@github.com:SUPINFO-LWP/symfony2-slides.git
-  - ./deploy.sh
+
+  - git config --global user.name "Adrien Brault"
+  - git config --global user.email adrien.brault@gmail.com
+
+script:
+  - git checkout --orphan gh-pages
+  - git rm -r --cached .
+  - find . -name "*.cfg" -exec landslide {} \;
+  - git add -f *.html
+  - git commit -m "Deploy"
+  - git push deploy gh-pages -f
 
 env:
   global:
