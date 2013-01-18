@@ -16,10 +16,10 @@ after_script:
   - git remote show origin
   - git remote show origin | grep "Fetch URL"
   - git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$"
-  - git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$" | grep -E -o "[^\:.]+/[^/:.]+"
+  - git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$" | grep -E -o "[^/:.]+/[^/:.]+"
 
   # Make sure the remote allows push
-  - git remote set-url origin "ssh://git@github.com:$(git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$" | grep -E -o "[^\:.]+/[^/:.]+").git"
+  - git remote set-url origin "ssh://git@github.com:$(git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$" | grep -E -o "[^/:.]+/[^/:.]+").git"
 
   - ./deploy.sh
 
