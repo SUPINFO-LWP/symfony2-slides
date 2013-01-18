@@ -5,8 +5,20 @@ branches:
 language: python
 
 before_script:
-  - pip install pygments landslide Jinja2 markdown
+  - sudo pip install pygments landslide Jinja2 markdown
 
 script:
   - find . -name "*.cfg" -exec landslide {} \;
   - cat *.html
+
+after_script:
+  - openssl aes-256-cbc -d -a -in ssh_key.enc -k $SSH_KEY_SECRET > .ssh/id_rsa
+  - ./deploy.sh
+
+env:
+  global:
+    - secret: ! 'rovB3QLPhCjO9wZOK1tj6Hamue6tQ0bP0xq5WSuJzX7SSAh81KANbOg3bea+
+
+        PlbEMcE8YM4G9NORv4jda9Eh7bFFH80J/sK/Pgr/Uz7RwhhCUpzAnLXuLE8G
+
+        536D7aYmDHfxlz7+gAVwfxCsPwQysJo8zk70TV2T/H/T8lt8XvI='
