@@ -11,7 +11,7 @@ script:
   - for config in `ls *.cfg`; do landslide $config; done
 
 after_script:
-  - openssl aes-256-cbc -d -a -in ssh_deploy_key.enc -k $SSH_KEY_SECRET > ~/.ssh/id_rsa
+  - openssl aes-256-cbc -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
   - chmod 700 ~/.ssh/id_rsa
 
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config # Disable SSH server fingerprint verification
