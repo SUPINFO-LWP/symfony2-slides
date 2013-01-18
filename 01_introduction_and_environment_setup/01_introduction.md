@@ -1,7 +1,5 @@
 # Symfony 2 courses
 
-TESTLOLZ
-
 ---
 
 # Overview
