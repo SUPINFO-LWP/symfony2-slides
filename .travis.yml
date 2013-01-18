@@ -11,15 +11,9 @@ script:
   - for config in `ls *.cfg`; do landslide $config; done
 
 after_script:
-  - openssl aes-256-cbc -d -a -in ssh_deploy_key.enc -k $SSH_KEY_SECRET > ~/.ssh/id_rsa
+  - openssl -aes-256-cbc -d -a -in ssh_deploy_key.enc -k $SSH_KEY_SECRET > ~/.ssh/id_rsa
 
-  - git remote show origin
-  - git remote show origin | grep "Fetch URL"
-  - git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$"
-  - git remote show origin | grep "Fetch URL" | grep -E -o "github.com.+$" | grep -E -o "[^/:.]+/[^/:.]+"
-
-  # Make sure the remote allows push
-  - git remote set-url origin "ssh://git@github.com:SUPINFO-LWP/symfony2-slides.git"
+  - git remote add deploy ssh://git@github.com:SUPINFO-LWP/symfony2-slides.git
 
   - ./deploy.sh
 
