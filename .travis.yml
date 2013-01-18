@@ -6,6 +6,8 @@ language: python
 
 before_script:
   - sh -c "echo $FOO"
+  - echo $TRAVIS
+  - sh -c "echo $TRAVIS"
   - sudo pip install -q pygments landslide Jinja2 markdown
 
 script:
