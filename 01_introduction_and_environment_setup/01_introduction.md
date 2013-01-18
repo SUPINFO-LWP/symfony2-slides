@@ -1,6 +1,6 @@
 # Symfony 2 courses
 
-TEST
+TESTLOLZ
 
 ---
 
