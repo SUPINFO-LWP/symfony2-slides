@@ -11,7 +11,7 @@ script:
   - for config in `ls *.cfg`; do landslide $config; done
 
 after_script:
-  - openssl aes-256-cbc -d -a -in ssh_key.enc -k $SSH_KEY_SECRET > .ssh/id_rsa
+  - openssl aes-256-cbc -d -a -in ssh_key.enc -k $SSH_KEY_SECRET > ~/.ssh/id_rsa
 
   # Make sure the remote allows push
   - git remote set-url origin "ssh://git@github.com:$(git remote show origin | grep "Fetch URL" | grep -E -o "[^\:.]+/[^/:.]+").git"
