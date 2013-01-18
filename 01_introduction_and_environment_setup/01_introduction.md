@@ -1,6 +1,6 @@
 # Symfony 2 courses
 
-.notes: These are my notes, hidden by default
+TEST
 
 ---
 
