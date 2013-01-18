@@ -1,28 +1,23 @@
+---
 branches:
   only:
-    - master
-
+  - master
 language: python
-
 before_script:
-  - sudo pip install -q pygments landslide Jinja2 markdown
-
+- echo $FOO
+- sudo pip install -q pygments landslide Jinja2 markdown
 script:
-  - for config in `ls *.cfg`; do landslide $config; done
-
+- for config in `ls *.cfg`; do landslide $config; done
 after_script:
-  - openssl des3 -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
-  - chmod 700 ~/.ssh/id_rsa
-
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config # Disable SSH server fingerprint verification
-  - git remote add deploy git@github.com:SUPINFO-LWP/symfony2-slides.git
-
-  - ./deploy.sh
-
+- openssl des3 -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
+- chmod 700 ~/.ssh/id_rsa
+- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- git remote add deploy git@github.com:SUPINFO-LWP/symfony2-slides.git
+- ./deploy.sh
 env:
   global:
-    - secret: ! 'rovB3QLPhCjO9wZOK1tj6Hamue6tQ0bP0xq5WSuJzX7SSAh81KANbOg3bea+
+  - secret: ! 'qrLpLviFCYQ4pdyq0ciiracXrkEvkYPNOvGZNXscPq8YIbQkpqBncfhVItF+
 
-        PlbEMcE8YM4G9NORv4jda9Eh7bFFH80J/sK/Pgr/Uz7RwhhCUpzAnLXuLE8G
+      flmeT7tdPOADtwSXNcoICumakRf70ESgqmOGRCPhw5E/IlPmndCfy7x8B6pL
 
-        536D7aYmDHfxlz7+gAVwfxCsPwQysJo8zk70TV2T/H/T8lt8XvI='
+      pj9cj7uhg75QrvZMx1IiyYJUILdJ/hxDf8+C30ef1yxzZ1bFjQc='
