@@ -1,19 +1,23 @@
----
 branches:
   only:
-  - master
+    - master
+
 language: python
+
 before_script:
-- echo $FOO
-- sudo pip install -q pygments landslide Jinja2 markdown
+  - echo "$FOO"
+  - sudo pip install -q pygments landslide Jinja2 markdown
+
 script:
-- for config in `ls *.cfg`; do landslide $config; done
+  - for config in `ls *.cfg`; do landslide $config; done
+
 after_script:
-- openssl des3 -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
-- chmod 700 ~/.ssh/id_rsa
-- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- git remote add deploy git@github.com:SUPINFO-LWP/symfony2-slides.git
-- ./deploy.sh
+  - openssl des3 -d -a -in ./ssh_deploy_key.enc -k "$SSH_KEY_SECRET" > ~/.ssh/id_rsa
+  - chmod 700 ~/.ssh/id_rsa
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - git remote add deploy git@github.com:SUPINFO-LWP/symfony2-slides.git
+  - ./deploy.sh
+
 env:
   global:
   - secret: ! 'qrLpLviFCYQ4pdyq0ciiracXrkEvkYPNOvGZNXscPq8YIbQkpqBncfhVItF+
