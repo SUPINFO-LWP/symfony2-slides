@@ -7,3 +7,7 @@
     width: 768px;
     font-size: 240%;
 }
+
+.slide header:first-child > h1 {
+    margin: 25px 0 27px;
+}
