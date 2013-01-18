@@ -5,7 +5,7 @@ branches:
 language: python
 
 before_script:
-  - sudo pip install pygments landslide Jinja2 markdown
+  - sudo pip install -q pygments landslide Jinja2 markdown
 
 script:
   - for config in `ls *.cfg`; do landslide $config; done
