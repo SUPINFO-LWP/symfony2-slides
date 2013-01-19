@@ -1,7 +1,3 @@
-# Controllers and Routing
-
----
-
 # A Simple Controller
   
     !php
