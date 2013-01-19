@@ -1,4 +1,4 @@
-# Controllers and routing
+# Controllers and Routing
 
 ---
 

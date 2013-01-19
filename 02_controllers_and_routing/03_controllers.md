@@ -1,4 +1,4 @@
-  # Controllers and Routing
+# Controllers and Routing
 
 ---
 
@@ -17,3 +17,4 @@
           return new Response('<html><body>Hello '.$name.'!</body></html>');
         }
     }
+
