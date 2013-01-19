@@ -15,7 +15,7 @@
         pattern:  /hello/{name}
         defaults: { _controller: AcmeBlogBundle:Hello:hello }
 
-First matched route always win.
+First matched route always win.  
 
 What will this return ?
 
@@ -59,13 +59,10 @@ Run
         requirements:
             culture: en|fr
 
-/   {culture} = en
-
-/en {culture} = en
-
-/fr {culture} = fr
-
-/es won't match this route
+/   {culture} = en  
+/en {culture} = en  
+/fr {culture} = fr  
+/es won't match this route  
 
 ---
 
@@ -82,14 +79,10 @@ Run
             _format: html|rss
             year: \d+
 
+The special `_format` routing parameter becomes the `Request object`.  
 
-The special `_format` routing parameter becomes the `Request object`.
 
-
-Exemple :
-
-_controller
-
-_format
-
-_locale
+Exemple :  
+*   _controller
+*   _format
+*   _locale
