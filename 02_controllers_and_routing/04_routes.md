@@ -1,44 +1,21 @@
-# Mapping URLs
-
-    !yaml
-    # app/config/routing.yml
-    hello:
-        pattern:  /hello/{name}
-        defaults: { _controller: AcmeHelloBundle:Hello:index }
-
-Going to `/hello/bryan` now executes the `HelloController::indexAction()` controller and passes in `bryan` for the `$name` variable.
-
----
-
-# Tunning Routes
-
-    !yaml
-    # app/config/routing.yml
-    blog:
-        pattern:  /blog/{page}
-        defaults: { _controller: AcmeBlogBundle:Blog:index, page: 1 }
-
-    blog_show:
-        pattern:  /blog/{slug}
-        defaults: { _controller: AcmeBlogBundle:Blog:show }
-
----
-
 # Adding a simple requirement
 
     !yaml
     # app/config/routing.yml
-    blog:
-        pattern:  /blog/{page}
-        defaults: { _controller: AcmeBlogBundle:Blog:index, page: 1 }
-        requirements:
-            page: \d+
+    home:
+        pattern:  /
+        defaults: { _controller: AcmeBlogBundle:Blog:index }
 
-    blog_show:
-        pattern:  /blog/{slug}
-        defaults: { _controller: AcmeBlogBundle:Blog:show }
+    hello:
+        pattern:  /hello/{name}
+        defaults: { _controller: AcmeBlogBundle:Hello:hello }
 
-Earlier route always win.
+First matched route always win.
+
+What will this return ?
+
+    !bash
+    $ curl http://localhost/app_dev.php/hello/Adrien
 
 ---
 
