@@ -4,7 +4,7 @@
 
 # Plan
 
-*   Requests and Responses
+*   Requests, Controller, Response Lifecycle
 *   Routes
 *   Controllers
 *   Tunning Routes
