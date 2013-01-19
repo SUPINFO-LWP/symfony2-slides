@@ -24,6 +24,7 @@ The `match()` and `generate()` methods form a bi-directional system.
     $router->generate('blog_show', array('slug' => 'my-blog-post'), true);
     // http://www.example.com/blog/my-blog-post
 
+
     !php
     $router->getContext()->setHost('www.example.com');
 
