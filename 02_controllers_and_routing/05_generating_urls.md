@@ -41,15 +41,14 @@ The `match()` and `generate()` methods form a bi-directional system.
 
 # Generating URLs from a template
 
-    !twig
+    !html
     <a href="{{ path('blog_show', {'slug': 'my-blog-post'}) }}">
         Read this blog post.
     </a>
 
 *or*
 
-    !twig
+    !html
     <a href="{{ url('blog_show', {'slug': 'my-blog-post'}) }}">
       Read this blog post.
     </a>
-    
