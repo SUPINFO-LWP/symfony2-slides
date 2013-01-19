@@ -5,9 +5,23 @@
     vertical-align: middle;
     height: 745px;
     width: 768px;
-    font-size: 240%;
+    font-size: 280%;
 }
 
 .slide header:first-child > h1 {
-    margin: 25px 0 27px;
+    margin: 25px 0 40px;
+}
+
+.highlight {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.slide p {
+    margin: 10px 0 10px;
+}
+
+.slide code {
+    background-color: rgb(214, 214, 214);
+    border: 1px solid rgb(173, 173, 173);
 }
