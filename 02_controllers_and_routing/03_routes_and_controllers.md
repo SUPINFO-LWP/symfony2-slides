@@ -1,7 +1,16 @@
 # The simplest route/controller
 
+*app/config/routing.yml*
+
+    !yaml
+    homepage:
+        pattern:  /homepage
+        defaults: { _controller: AcmeHelloBundle:Hello:index }
+
+*src/Acme/HelloBundle/Controller/HelloController.php*
+
     !php
-    <?php // src/Acme/HelloBundle/Controller/HelloController.php
+    <?php
 
     namespace Acme\HelloBundle\Controller;
 
@@ -15,15 +24,7 @@
         }
     }
 
-.
-
-    !yaml
-    # app/config/routing.yml
-    homepage:
-        pattern:  /homepage
-        defaults: { _controller: AcmeHelloBundle:Hello:index }
-
-.
+*bash*
 
     !bash
     $ curl http://localhost/app_dev.php/homepage
@@ -33,12 +34,14 @@
 
 # Route placeholders
 
+*src/Acme/HelloBundle/Controller/HelloController.php*
+
     !yaml
     hello:
         pattern:  /hello/{name}
         defaults: { _controller: AcmeBlogBundle:Hello:hello }
 
-.
+*src/Acme/HelloBundle/Resources/config/routing.yml*
 
     !php
     public function helloAction($name)
@@ -46,8 +49,36 @@
         return new Response('<html><body>Hello ' . $name . '!</body></html>');
     }
 
-.
+*bash*
 
     !bash
     $ curl http://localhost/app_dev.php/hello/Adrien
     <html><body>Hello Adrien!</body></html>
+
+---
+
+# Routes annotations
+
+*src/Acme/HelloBundle/Controller/HelloController.php*
+
+    !php
+    <?php
+
+    namespace Acme\HelloBundle\Controller;
+
+    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+    // these import the "@Route" and "@Template" annotations
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+    class HelloController extends Controller
+    {
+        /**
+         * @Route("/hello/{name}", name="_hello")
+         * @Template()
+         */
+        public function helloAction($name)
+        {
+            return array('name' => $name);
+        }
+    }

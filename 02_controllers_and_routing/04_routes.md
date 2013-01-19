@@ -73,6 +73,8 @@ Run
 
 
 The special `_format` routing parameter becomes the `Request object`.
-ex : _controller
-     _format
-     _locale
+
+Exemple : 
+*   _controller
+*   _format
+*   _locale
