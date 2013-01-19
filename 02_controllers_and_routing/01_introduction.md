@@ -5,8 +5,8 @@
 # Plan
 
 *   Requests, Controller, Response Lifecycle
-*   Routes
 *   Controllers
+*   Routes
 *   Tunning Routes
 *   Generating URLs
 *   The Request Object
