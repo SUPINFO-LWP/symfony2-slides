@@ -1,3 +1,7 @@
+# Routes and controllers
+
+---
+
 # The simplest route/controller
 
 *app/config/routing.yml*
@@ -57,7 +61,7 @@
 
 ---
 
-# Routes annotations
+# Route annotations
 
 *src/Acme/HelloBundle/Controller/HelloController.php*
 

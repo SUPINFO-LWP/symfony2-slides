@@ -1,7 +1,12 @@
+# Routing
+
+---
+
 # Adding a simple requirement
 
+*app/config/routing.yml*
+
     !yaml
-    # app/config/routing.yml
     home:
         pattern:  /
         defaults: { _controller: AcmeBlogBundle:Blog:index }
@@ -21,8 +26,9 @@ What will this return ?
 
 # Adding a HTTP requirement
 
+*app/config/routing.yml*
+
     !yaml
-    # app/config/routing.yml
     contact:
         pattern:  /contact
         defaults: { _controller: AcmeDemoBundle:Main:contact }
@@ -44,25 +50,27 @@ Run
 
 # Adding a language requirement
 
+*app/config/routing.yml*
+
     !yaml
-    # app/config/routing.yml
     homepage:
         pattern:  /{culture}
         defaults: { _controller: AcmeDemoBundle:Main:homepage, culture: en }
         requirements:
             culture: en|fr
 
-    /   {culture} = en
-    /en {culture} = en
-    /fr {culture} = fr
-    /es won't match this route
+/   {culture} = en
+/en {culture} = en
+/fr {culture} = fr
+/es won't match this route
 
 ---
 
 # Advanced Routing Example
 
+*app/config/routing.yml*
+
     !yaml
-    # app/config/routing.yml
     article_show:
         pattern: /articles/{culture}/{year}/{title}.{_format}
         defaults: { _controller: AcmeDemoBundle:Article:show, _format: html }
@@ -74,7 +82,4 @@ Run
 
 The special `_format` routing parameter becomes the `Request object`.
 
-Exemple : 
-*   _controller
-*   _format
-*   _locale
+Exemple : _controller, _format, _locale
