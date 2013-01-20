@@ -46,19 +46,3 @@ Render =>
     !php
     $router->generate('blog', array('page' => 2, 'category' => 'Symfony'));
     // /blog/2?category=Symfony
-
----
-
-# Generating URLs from a template
-
-    !html
-    <a href="{{ path('blog_show', {'slug': 'my-blog-post'}) }}">
-        Read this blog post.
-    </a>
-
-*or*
-
-    !html
-    <a href="{{ url('blog_show', {'slug': 'my-blog-post'}) }}">
-      Read this blog post.
-    </a>
