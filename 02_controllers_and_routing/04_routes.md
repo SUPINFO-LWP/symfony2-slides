@@ -81,7 +81,6 @@ Run
 
 The special `_format` routing parameter becomes the `Request object`.  
 
-
 Exemple :  
 *   _controller
 *   _format

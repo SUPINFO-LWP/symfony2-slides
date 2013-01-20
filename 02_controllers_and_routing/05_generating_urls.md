@@ -8,13 +8,22 @@ The `match()` and `generate()` methods form a bi-directional system.
 
     !php
     $params = $router->match('/blog/my-blog-post');
-    // array(
-    //     'slug' => 'my-blog-post',
-    //     '_controller' => 'AcmeBlogBundle:Blog:show',
-    // )
+
+Render =>
+
+    !php
+    array(
+        'slug' => 'my-blog-post',
+        '_controller' => 'AcmeBlogBundle:Blog:show',
+    )
+
+and
 
     $uri = $router->generate('blog_show', array('slug' => 'my-blog-post'));
-    // /blog/my-blog-post
+
+Render =>
+
+`/blog/my-blog-post`
 
 ---
 

@@ -11,3 +11,5 @@
 *   Generating URLs
 *   The Request Object
 *   Common Controller Tasks
+
+![Business Cat](http://static.quickmeme.com/media/social/qm.gif =150x150)
