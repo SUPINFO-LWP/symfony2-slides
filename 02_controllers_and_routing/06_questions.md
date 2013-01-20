@@ -1,3 +1,3 @@
 # Any questions ?
 
-![Business Cat](../img/businessCat.jpg)
+![Business Cat](../img/businessCat.jpg?raw=true)
