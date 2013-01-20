@@ -4,5 +4,5 @@
 
 
 <div style="float: right; width: 150px;">
-<img src="../img/futuramaFry.jpg?raw=true" alt="Futurama Fry">
+<img src="../img/futuramaFry.jpg?raw=true" alt="Futurama Fry" />
 </div>
