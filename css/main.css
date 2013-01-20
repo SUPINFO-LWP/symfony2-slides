@@ -1,4 +1,5 @@
-.slide-content img {
+/*.slide-content img {*/
+img[alt="FuturamaFry"] {
     float: right;
     height: 150px;
     width: 150px;
