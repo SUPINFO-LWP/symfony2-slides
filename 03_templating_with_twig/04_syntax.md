@@ -6,6 +6,7 @@
 
 `{% ... %}` is used to execute statements (if else, for, while, etc...).  
 `{{ ... }}` is used to display the result of an expression to the template.  
+`{# ... #}` is used to comment the code.
 
 ---
 
@@ -37,3 +38,42 @@ foo['bar'] on the other hand only works with PHP arrays:
 `{% set foo = 'foo' %}`  
 `{% set foo = [1, 2] %}`  
 `{% set foo = {'foo': 'bar'} %}`  
+
+---
+
+# Filters
+
+*   Used to modify variables
+*   Separeted by a pipe `|`
+*   Arguments between parentheses `()`
+
+*This removes all HTML tags from the name and title-cases it*  
+`{{ name|striptags|title }}`  
+
+*This will join a list by commas*  
+`{{ list|join(', ') }}`  
+
+*This will apply the `filter` `upper` to a section of code*
+
+    !twig
+    {% filter upper %}
+        This text becomes uppercase
+    {% endfilter %}
+
+---
+
+# Functions
+
+*This is a simple loop*
+
+    !twig
+    {% for i in range(0, 10) %}
+        {{ i }},
+    {% endfor %}
+    
+http://twig.sensiolabs.org/doc/functions/index.html
+
+---
+
+# Named arguments
+
