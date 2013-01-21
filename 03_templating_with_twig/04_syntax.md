@@ -77,3 +77,137 @@ http://twig.sensiolabs.org/doc/functions/index.html
 
 # Named arguments
 
+*Simple named argument exemple*
+
+    !twig
+    {% for i in range(low=1, high=10, step=2) %}
+        {{ i }},
+    {% endfor %}
+    
+*Using named argument for a better maintainability*
+
+    !twig
+    {{ data|convert_encoding('UTF-8', 'iso-2022-jp') }}
+    {# versus #}
+    {{ data|convert_encoding(from='iso-2022-jp', to='UTF-8') }}
+
+*Skip an argument*
+
+    !twig
+    {{ "now"|date(null, "Europe/Paris") }}
+    {{ "now"|date(timezone="Europe/Paris") }}
+
+*Both work*
+
+    !twig
+    {{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
+    {{ "now"|date(timezone="Europe/Paris", 'd/m/Y H:i') }}
+    
+---
+
+# Control structure
+
+*Displays all users in an array named `users`*
+
+    !twig
+    <h1>Members</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username|e }}</li>
+        {% endfor %}
+    </ul>
+    
+*Displays the block only if the array `users` is not empty*
+
+    !twig
+    {% if users|length > 0 %}
+        <ul>
+            {% for user in users %}
+                <li>{{ user.username|e }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+---
+
+# Comments
+
+*You can disable a section of code using comments*
+
+    !twig
+    {# note: disabled template because blablabla...
+        {% for user in users %}
+            ...
+        {% endfor %}
+    #}
+    
+# Includes other templates
+
+*This will include `sidebar.html` in the current template*
+
+    !twig
+    {% include 'sidebar.html' %}
+    {% include "sections/articles/sidebar.html" %}
+    
+*The included template render_box.html is able to access box*
+
+    !twig
+    {% for box in boxes %}
+        {% include "render_box.html" %}
+    {% endfor %}
+
+---
+
+# Template Inheritance
+
+*A simple skeleton template*
+
+    !twig
+    <!DOCTYPE html>
+    <html>
+        <head>
+            {% block head %}
+                <link rel="stylesheet" href="style.css" />
+                <title>{% block title %}{% endblock %} - My Webpage</title>
+            {% endblock %}
+        </head>
+        <body>
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+            
+            <div id="footer">
+                {% block footer %}
+                    &copy; Copyright 2011 by <a href="http://domain.invalid/">you</a>.
+                {% endblock %}
+            </div>
+        </body>
+    </html>
+
+*A child template might look like this*
+    
+    {% extends "base.html" %}
+    
+    {% block title %}Index{% endblock %}
+    {% block head %}
+        {{ parent() }}
+        <style type="text/css">
+            .important { color: #336699; }
+        </style>
+    {% endblock %}
+    {% block content %}
+        <h1>Index</h1>
+        <p class="important">
+            Welcome to my awesome homepage.
+        </p>
+    {% endblock %}
+
+---
+
+# HTML Escaping
+
+
+    
+    
+    
+    
