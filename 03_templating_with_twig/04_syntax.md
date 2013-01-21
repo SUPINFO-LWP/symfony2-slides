@@ -113,7 +113,7 @@ http://twig.sensiolabs.org/doc/functions/index.html
     <h1>Members</h1>
     <ul>
         {% for user in users %}
-            <li>{{ user.username|e }}</li>
+            <li>{{ user.username }}</li>
         {% endfor %}
     </ul>
     
@@ -140,7 +140,9 @@ http://twig.sensiolabs.org/doc/functions/index.html
             ...
         {% endfor %}
     #}
-    
+
+---
+
 # Includes other templates
 
 *This will include `sidebar.html` in the current template*
@@ -206,7 +208,37 @@ http://twig.sensiolabs.org/doc/functions/index.html
 
 # HTML Escaping
 
+By default in Symfony2, Twig escapes variables automaticly
 
+*You can set the `autoescape` to `false` globaly in `app/config/config.yml`*
+
+    !yamel
+    twig:
+        autoescape: false
+        
+*This will render the output without escaping*  
+`{{ user.username|raw }}`
+
+*and this will render the output escaped if the autoescape is not activated*  
+`{{ user.username|e }}`
+
+*This will escapes HTML in block*
+
+    !twig
+    {% autoescape %}
+        Everything will be automatically escaped in this block (using the HTML strategy)
+    {% endautoescape %}
+
+*and this escaped Javascript*
+
+    !twig
+    {% autoescape 'js' %}
+        Everything will be automatically escaped in this block (using the JS strategy)
+    {% endautoescape %}
+
+---
+
+$ php app/console twig:lint @AcmeArticleBundle
     
     
     
