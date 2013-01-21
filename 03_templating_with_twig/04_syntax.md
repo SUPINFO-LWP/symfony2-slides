@@ -11,6 +11,8 @@
 
 # Variables 
 
+## Display
+
 `{{ foo.bar }}` and `{{ foo['bar'] }}`  
 Both display the attribute `bar` of the variable `foo`.  
 
@@ -27,4 +29,11 @@ On the PHP layer twig will check :
 
 foo['bar'] on the other hand only works with PHP arrays:  
 *   check if foo is an array and bar a valid element;
-*   if not, return a null value.
+*   if not, return a null value.  
+
+## Set
+
+*You can assign values to variables inside code blocks. Assignments use the set tag:*  
+`{% set foo = 'foo' %}`  
+`{% set foo = [1, 2] %}`  
+`{% set foo = {'foo': 'bar'} %}`  
