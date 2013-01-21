@@ -50,11 +50,3 @@
 *   HTTP server
 *   PHP interpreter
 *   Database server
-
-$ sudo aptitude install apache2 php5 libphp5 mysql-server curl git
-$ curl -s https://getcomposer.org/installer | php
-$ sudo mv composer.phar /usr/bin/composer
-$ cd /home/name/Sites/
-$ composer create-project symfony/framework-standard-edition path/ 2.1.7
-$ cd projectName
-$ php app/check.php
