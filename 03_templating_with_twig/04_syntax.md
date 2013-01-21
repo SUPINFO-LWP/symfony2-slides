@@ -13,11 +13,10 @@
 
 ## Display
 
-
 *Both display the attribute `bar` of the variable `foo`*  
 `{{ foo.bar }}` and `{{ foo['bar'] }}`  
 
-*equivalent to the non-working foo.data-foo*  
+*Equivalent to the non-working foo.data-foo*  
 `{{ attribute(foo, 'data-foo') }}`  
 
 On the PHP layer twig will check :
@@ -28,14 +27,11 @@ On the PHP layer twig will check :
 *   if not, and if foo is an object, check that isBar is a valid method;
 *   if not, return a null value.  
 
-
 foo['bar'] on the other hand only works with PHP arrays:
 *   check if foo is an array and bar a valid element;
 *   if not, return a null value.  
 
-
 ## Set
-
 
 *You can assign values to variables inside code blocks with the `set` tag*  
 `{% set foo = 'foo' %}`  
