@@ -245,10 +245,54 @@ By default in Symfony2, Twig escapes variables automaticly
 
 # Macros
 
+Do not reinvent the wheel.
+
+*A macro that renders a form element*
+
+    !twig
+    {% macro input(name, value, type, size) %}
+        <input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
+    {% endmacro %}
+
+
+*A macro is defined outside the template and imported*
+
+    {% import "forms.html" as forms %}
+    
+    <p>{{ forms.input('username') }}</p>
+
+*Import an individual macro names from a template into the current namespace*
+
+    {% from 'forms.html' import input as input_field %}
+    
+    <dl>
+        <dt>Username</dt>
+        <dd>{{ input_field('username') }}</dd>
+        <dt>Password</dt>
+        <dd>{{ input_field('password', '', 'password') }}</dd>
+    </dl>
+
+
+*A default value can also be defined for macro arguments*
+
+    {% macro input(name, value = "", type = "text", size = 20) %}
+        <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}" />
+    {% endmacro %}
+    
+---
+
+# Expressions
+
+*   b-and, b-xor, b-or
+*   or, and
+*   ==, !=, <, >, >=, <=
+*   in, ..
+*   +, -, ~, *, /, //, %
+*   is, and **
+
 ---
 
 $ php app/console twig:lint @AcmeArticleBundle
-    
     
     
     
