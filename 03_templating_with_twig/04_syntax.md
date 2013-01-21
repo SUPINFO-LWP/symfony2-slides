@@ -4,8 +4,8 @@
 
 # Delimiters
 
-`{% ... %}` is used to execute statements (if else, for, while, etc...).
-`{{ ... }}` is used to display the result of an expression to the template.
+`{% ... %}` is used to execute statements (if else, for, while, etc...).  
+`{{ ... }}` is used to display the result of an expression to the template.  
 
 ---
 
