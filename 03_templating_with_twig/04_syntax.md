@@ -16,10 +16,10 @@
 `{{ foo.bar }}` and `{{ foo['bar'] }}`  
 Both display the attribute `bar` of the variable `foo`.  
 
-{# equivalent to the non-working foo.data-foo #}
-{{ attribute(foo, 'data-foo') }}
+*equivalent to the non-working foo.data-foo #}*
+`{{ attribute(foo, 'data-foo') }}`
 
-On the PHP layer twig will check :  
+On the PHP layer twig will check :
 *   if foo is an array and bar a valid element;
 *   if not, and if foo is an object, check that bar is a valid property;
 *   if not, and if foo is an object, check that bar is a valid method (even if bar is the constructor - use __construct() instead);
@@ -27,13 +27,13 @@ On the PHP layer twig will check :
 *   if not, and if foo is an object, check that isBar is a valid method;
 *   if not, return a null value.  
 
-foo['bar'] on the other hand only works with PHP arrays:  
+foo['bar'] on the other hand only works with PHP arrays:
 *   check if foo is an array and bar a valid element;
 *   if not, return a null value.  
 
 ## Set
 
-*You can assign values to variables inside code blocks. Assignments use the set tag:*  
+*You can assign values to variables inside code blocks with the `set` tag*  
 `{% set foo = 'foo' %}`  
 `{% set foo = [1, 2] %}`  
 `{% set foo = {'foo': 'bar'} %}`  
