@@ -206,7 +206,7 @@ http://twig.sensiolabs.org/doc/functions/index.html
 
 ---
 
-# HTML Escaping
+# Escaping
 
 By default in Symfony2, Twig escapes variables automaticly
 
@@ -235,6 +235,15 @@ By default in Symfony2, Twig escapes variables automaticly
     {% autoescape 'js' %}
         Everything will be automatically escaped in this block (using the JS strategy)
     {% endautoescape %}
+
+*Escaping Twig delimiters*
+
+    !twig
+    <p>'{{'</p>
+    
+---
+
+# Macros
 
 ---
 
