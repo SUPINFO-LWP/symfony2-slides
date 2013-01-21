@@ -15,7 +15,7 @@ $ sudo mv composer.phar /usr/bin/composer
 
 ---
 
-# Install composer
+# Create a Symfony2 project
 
 $ cd /home/name/Sites/  
 $ composer create-project symfony/framework-standard-edition path/ 2.1.7  
