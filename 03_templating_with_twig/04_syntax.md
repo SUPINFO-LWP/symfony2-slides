@@ -292,7 +292,115 @@ Do not reinvent the wheel.
 
 ---
 
-$ php app/console twig:lint @AcmeArticleBundle
+## Literals
+
+*   `"Hello word"` everything in simple or double quote is a string
+*   `42` is a number and `42.23` a float
+*   `{ foo: 'bar', zob: 'hi' }` is a hash
+*   `{ 2: 'foo', (2 + 1): 'bar' }` is an other hash
+
+*This set an array with an hash inside*  
+`{% set foo = [1, {"foo": "bar"}] %}`
+
+---
+
+## Maths
+
+*   `{{ 5 + 5 }}` = 10  
+*   `{{ 7 - 4 }}` = 3
+*   etc...
+
+---
+
+## Logic
+
+    !twig
+    {% if ( user.active != 0 ) and ( user.role == 'admin' ) %}
+        {{ True }}
+    {% endif %}}
+
+---
+
+## Comparaison
+
+*Both will return true*
+
+    !twig
+    {{ 1 in [1, 2, 3] }}
+    {{ 'cd' in 'abcde' }}
+
+
+*Both expressions do the same*
+
+    !twig
+    {% if 1 not in [1, 2, 3] %}
+    {% if not (1 in [1, 2, 3]) %}
+
+
+*Return `true` if `userid` is `odd`*
+
+    !twig
+    {{ userid is odd }}
+
+
+*Tests accept arguments*
+
+    !twig
+    {% if loop.index is not divisibleby(3) %}
+    {% if not (loop.index is divisibleby(3)) %}
+
+
+*The ternary operator*
+
+    !twig
+    {{ foo ? 'yes' : 'no' }}
+    {{ foo ?: 'no' }} == {{ foo ? foo : 'no' }}
+    {{ foo ? 'yes' }} == {{ foo ? 'yes' : '' }}
+
+---
+
+## String interpolation
+
+    !twig
+    {{ "foo #{bar} baz" }}
+    {{ "foo #{1 + 2} baz" }}
+
+---
+
+## Whitespaces
+
+*Output will be <div><strong>foo</strong></div>*
+
+    !twig
+    {% spaceless %}
+        <div>
+            <strong>foo</strong>
+        </div>
+    {% endspaceless %}
+    
+*Output will be `no spaces`*
+
+    !twig
+    {% set value = 'no spaces' %}
+    {%- if true -%}
+        {{- value -}}
+    {%- endif -%}
+
+*Output `<li>no spaces    </li>`*
+
+    !twig
+    {% set value = 'no spaces' %}
+    <li>    {{- value }}    </li>
+
+---
+
+# To finish
+
+Coding standards :  
+`http://twig.sensiolabs.org/doc/coding_standards.html`  
+
+*Test your Twig syntax*  
+`$ php app/console twig:lint @AcmeArticleBundle`
     
     
     
