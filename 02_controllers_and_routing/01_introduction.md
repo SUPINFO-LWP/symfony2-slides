@@ -12,4 +12,4 @@
 *   The Request Object
 *   Common Controller Tasks
 
-![Brace Yourself](../img/braceYourself.jpg?raw=true)
+![Brace Yourself](img/braceYourself.jpg)
