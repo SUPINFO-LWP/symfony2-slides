@@ -11,5 +11,5 @@ sudo pip install -q landslide pygments jinja2 markdown
 And then run
 
 ```
-find . -name \"*.cfg\" -exec landslide {} \;
+find . -name "*.cfg" -exec landslide {} \;
 ```
