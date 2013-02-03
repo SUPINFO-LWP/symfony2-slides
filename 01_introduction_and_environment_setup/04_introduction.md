@@ -167,3 +167,73 @@
         },
         ...
     }
+
+---
+
+# Bundles
+
+> A bundle is nothing more than a directory that houses everything related to a specific feature, including PHP classes,
+> configuration, and even stylesheets and Javascript files.
+
+[Source](http://symfony.com/doc/current/book/page_creation.html#before-you-begin-create-the-bundle)
+
+---
+
+# Bundle directory structure
+
+    !bash
+    adrienbrault at adrienbrault-mbp in src/Acme/DemoBundle
+    $ tree -L 2 .
+    .
+    |-- Command
+    |   |-- AddUserCommand.php
+    |-- Controller
+    |   |-- DemoController.php
+    |   |-- SecuredController.php
+    |   `-- WelcomeController.php
+    |-- DependencyInjection
+    |   `-- AcmeDemoExtension.php
+    |-- EventListener
+    |   `-- ControllerListener.php
+    |-- Form
+    |   `-- ContactType.php
+    |-- Resources
+    |   |-- config
+    |   |-- public
+    |   `-- views
+    |-- Tests
+    |   `-- Controller
+    `-- AcmeDemoBundle.php
+
+---
+
+# Console application
+
+    !bash
+    $ php app/console
+    Symfony version 2.1.7 - app/dev/debug
+
+    Usage:
+      [options] command [arguments]
+
+    Options:
+      --help           -h Display this help message.
+      --quiet          -q Do not output any message.
+      ...
+
+    Available commands:
+      help                                  Displays help for a command
+      list                                  Lists commands
+    assetic
+      assetic:dump                          Dumps all assets to the filesystem
+    assets
+      assets:install                        Installs bundles web assets under a public web directory
+    cache
+      cache:clear                           Clears the cache
+      cache:warmup                          Warms up an empty cache
+    config
+      config:dump-reference                 Dumps default configuration for an extension
+    container
+      container:debug                       Displays current services for an application
+    doctrine
+    ...
