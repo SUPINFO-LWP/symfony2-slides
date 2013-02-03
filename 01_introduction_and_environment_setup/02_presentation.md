@@ -41,4 +41,4 @@
 
 ![Symfony 2 is the future](http://s2.favim.com/orig/28/back-to-the-future-gif-movie-Favim.com-232507.gif)
 
-# They uses symfony 2 in the future
+# They use symfony 2 in the future
