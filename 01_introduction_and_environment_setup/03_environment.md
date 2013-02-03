@@ -74,3 +74,19 @@ Everything you'd need:
 * `vagrant suspend` stop the VM in the current state
 * `vagrant destroy` removed the VM
 * `vagrant ssh` to ssh into the VM (windows users, use putty, vagrant@11.11.11.11 with vagrant password)
+
+---
+
+# Get your last tools
+
+**Text editor**:
+
+* [PHPStorm](http://www.jetbrains.com/phpstorm/)
+* [Sublime Text 2](http://www.sublimetext.com/)
+* [VIM](http://www.vim.org/about.php)
+
+**Terminal**:
+
+* [Putty](http://www.putty.org/) on *Windows*
+* [iTerm 2](http://www.iterm2.com/) on *Mac OS* or the built in terminal
+* The thing you use to boot your computer on *linux*
