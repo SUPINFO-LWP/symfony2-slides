@@ -2,9 +2,7 @@
 
 ---
 
-# Linux
-
-![Linux](http://cdn.memegenerator.net/instances/400x/34272970.jpg)
+# ![Linux](http://cdn.memegenerator.net/instances/400x/34272970.jpg)
 
 ---
 
