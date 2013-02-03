@@ -237,3 +237,13 @@
       container:debug                       Displays current services for an application
     doctrine
     ...
+
+---
+
+# Symfony 2 documentation
+
+* [The book](http://symfony.com/doc/current/book/index.html) general topics **your new best friend**
+* [Cookbooks](http://symfony.com/doc/current/cookbook/index.html) *tutorials* on how to do specific things
+* [Bundles](http://symfony.com/doc/current/bundles/index.html) *officials* bundles doc
+
+![RTFM](http://i0.kym-cdn.com/photos/images/newsfeed/000/017/674/rtfm_by_noptic.png?1318992465)
