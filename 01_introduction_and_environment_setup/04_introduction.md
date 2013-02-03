@@ -1,4 +1,4 @@
-# Basics
+# Symfony2 introduction
 
 ---
 

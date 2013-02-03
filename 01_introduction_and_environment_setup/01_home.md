@@ -1,1 +1,1 @@
-# Symfony 2 presentation & environment setup
+# Symfony 2: presentation, environment setup, introduction
