@@ -42,7 +42,55 @@ Setting up database
     $ php app/console doctrine:generate:entity --entity="WebBundle:Fail"
     $ php app/console doctrine:generate:entities WebBundle
     $ php app/console doctrine:schema:update --force
-    
+ 
+---
+
+##Lifecycle Callbacks
+
+    // ...
+
+    /**
+     * @ORM\Entity()
+     * @ORM\HasLifecycleCallbacks()
+     */
+    class Fail
+    {
+        // ...
+    }
+
+    // ...
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedValue()
+    {
+        $this->created = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setUpdatedValue()
+    {
+        $this->updated = new \DateTime();
+    }
+
+    // ...
+
+---    
+
+   * preRemove
+   * postRemove
+   * prePersist
+   * postPersist
+   * preUpdate
+   * postUpdate
+   * postLoad
+   * loadClassMetadata
+
+---
+
 ##Practice
 
 *Do it now* Samuel Lee Jackson Pulp Fiction.jpg
