@@ -3,7 +3,7 @@ Doctrine Query Language
 
 ---
 
-##Querying for Objects with DQL
+##A simple example
 
     $em = $this->getDoctrine()->getManager();
     $query = $em
@@ -17,6 +17,27 @@ Doctrine Query Language
 
     $fail = $query->getResult();
 
+##Query a single fail
+
+    $fail = $query->getSingleResult();
+    
+*If no result are returned the getSingleResult() method throws a Doctrine\ORM\NoResultException exception*
+    
+    $query = $em
+        ->createQuery('
+            SELECT f
+            FROM WebBundle:fail f
+            WHERE f.id = :id
+        ')
+        ->setParameter('id', '2')
+        ->setMaxResults(1);
+
+    try {
+        $fail = $query->getSingleResult();
+    } catch (\Doctrine\Orm\NoResultException $e) {
+        fail = null;
+    }
+    
 ---
 
 ##Practice
