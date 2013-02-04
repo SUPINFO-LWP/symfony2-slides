@@ -40,7 +40,26 @@ Setting up database
 ##Creating an entity class
 
     $ php app/console doctrine:generate:entity --entity="WebBundle:Fail"
-    $ php app/console doctrine:generate:entities WebBundle
+
+   * Strings
+      * string (used for shorter strings)
+      * text (used for larger strings)
+   * Numbers
+      * integer
+      * smallint
+      * bigint
+      * decimal
+      * float
+   * Dates and Times (use a DateTime object for these fields in PHP)
+      * date
+      * time
+      * datetime
+   * Other Types
+      * boolean
+      * object (serialized and stored in a CLOB field)
+      * array (serialized and stored in a CLOB field)
+
+    $ php app/console doctrine:generate:entities WebBundle  
     $ php app/console doctrine:schema:update --force
  
 ---
