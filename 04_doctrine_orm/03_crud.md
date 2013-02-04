@@ -1,6 +1,10 @@
 CRUD
 ====
 
+## Create Read Update Delete
+
+---
+
 ##Insert an object
 
     <?php
@@ -108,5 +112,3 @@ CRUD
 ##Practice
 
 *Do it now* Samuel Lee Jackson Pulp Fiction
-
----
