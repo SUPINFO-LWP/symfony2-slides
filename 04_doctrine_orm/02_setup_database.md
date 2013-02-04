@@ -45,4 +45,4 @@ Setting up database
     
 ##Practice
 
-*Do it now* Samuel Lee Jackson Pulp Fiction
+*Do it now* Samuel Lee Jackson Pulp Fiction.jpg
