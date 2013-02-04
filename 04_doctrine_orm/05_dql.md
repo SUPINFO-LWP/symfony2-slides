@@ -17,6 +17,8 @@ Doctrine Query Language
 
     $fail = $query->getResult();
 
+---
+
 ##Query a single fail
 
     $fail = $query->getSingleResult();
