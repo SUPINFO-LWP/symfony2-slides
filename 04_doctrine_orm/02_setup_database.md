@@ -21,16 +21,16 @@ Setting up database
 
 *Wait a minute*
 
-    $ mysql -u root
-    $ USER supinfail;
-    $ SHOW TABLE STATUS \G
+    $ mysql -u root  
+    $ USER supinfail;  
+    $ SHOW TABLE STATUS \G  
 
 *FFFUUUUUU, default character-set is `latin1` !*
 
     #/etc/mysql/my.cnf
     [mysqld]
     collation-server = utf8_general_ci
-    character-set-server = utf8
+    character-set-server = utf8  
 
     $ php app/console doctrine:database:drop --force
     $ php app/console doctrine:database:create
@@ -42,3 +42,7 @@ Setting up database
     $ php app/console doctrine:generate:entity --entity="WebBundle:Fail"
     $ php app/console doctrine:generate:entities WebBundle
     $ php app/console doctrine:schema:update --force
+    
+##Practice
+
+*Do it now* Samuel Lee Jackson Pulp Fiction
