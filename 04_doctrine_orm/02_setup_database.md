@@ -19,13 +19,21 @@ Setting up database
 
 ---
 
+![philosoraptor](http://i0.kym-cdn.com/photos/images/original/000/085/283/philosoraptor.jpg?1291090164)
+
 *Wait a minute*
+
+---
 
     $ mysql -u root  
     $ USER supinfail;  
     $ SHOW TABLE STATUS \G  
 
+![rageFU](http://i0.kym-cdn.com/photos/images/original/000/000/578/1234931504682.jpg)
+
 *FFFUUUUUU, default character-set is `latin1` !*
+
+---
 
     #/etc/mysql/my.cnf
     [mysqld]
@@ -39,7 +47,7 @@ Setting up database
 
 ##Creating an entity class
 
-    $ php app/console doctrine:generate:entity --entity="WebBundle:Fail"
+    $ php app/console doctrine:generate:entity
 
    * Strings
       * string (used for shorter strings)
@@ -57,7 +65,7 @@ Setting up database
    * Other Types
       * boolean
       * object (serialized and stored in a CLOB field)
-      * array (serialized and stored in a CLOB field)
+      * array (serialized and stored in a CLOB field)  
 
     $ php app/console doctrine:generate:entities WebBundle  
     $ php app/console doctrine:schema:update --force
@@ -112,4 +120,5 @@ Setting up database
 
 ##Practice
 
-*Do it now* Samuel Lee Jackson Pulp Fiction.jpg
+![badTime](http://weknowmemes.com/generator/uploads/generated/g136009871787922204.jpg)
+

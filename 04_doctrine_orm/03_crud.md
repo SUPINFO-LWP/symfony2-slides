@@ -3,6 +3,8 @@ CRUD
 
 *Create Read Update Delete*
 
+![BatMan](http://i.qkme.me/3qoydn.jpg)
+
 ---
 
 ##Insert an object
@@ -111,4 +113,4 @@ CRUD
 
 ##Practice
 
-*Do it now* Samuel Lee Jackson Pulp Fiction
+![badTime](http://weknowmemes.com/generator/uploads/generated/g136009871787922204.jpg)
