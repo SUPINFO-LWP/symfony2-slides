@@ -26,7 +26,7 @@ Setting up database
 ---
 
     $ mysql -u root  
-    $ USER supinfail;  
+    $ USE supinfail;  
     $ SHOW TABLE STATUS \G  
 
 ![rageFU](http://i0.kym-cdn.com/photos/images/original/000/000/578/1234931504682.jpg)
