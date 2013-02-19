@@ -27,7 +27,8 @@ Setting up database
 
     $ mysql -u root  
     $ USE supinfail;  
-    $ SHOW TABLE STATUS \G  
+    $ SHOW VARIABLES LIKE "character_set_database";
+    $ SHOW VARIABLES LIKE "collation_database";
 
 ![rageFU](http://i0.kym-cdn.com/photos/images/original/000/000/578/1234931504682.jpg)
 
