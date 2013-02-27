@@ -177,6 +177,12 @@
 
 [Source](http://symfony.com/doc/current/book/page_creation.html#before-you-begin-create-the-bundle)
 
+*Some bundles example*
+   * [SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle)
+   * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle)
+   * [FrameworkBundle](https://github.com/symfony/FrameworkBundle)
+   * [SwiftmailerBundle](https://github.com/symfony/SwiftmailerBundle)
+
 ---
 
 # Bundle directory structure
@@ -245,5 +251,6 @@
 * [The book](http://symfony.com/doc/current/book/index.html) general topics **your new best friend**
 * [Cookbooks](http://symfony.com/doc/current/cookbook/index.html) *tutorials* on how to do specific things
 * [Bundles](http://symfony.com/doc/current/bundles/index.html) *officials* bundles doc
+* [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) Code convention
 
 ![RTFM](http://i0.kym-cdn.com/photos/images/newsfeed/000/017/674/rtfm_by_noptic.png?1318992465)
