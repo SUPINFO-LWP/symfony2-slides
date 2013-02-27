@@ -31,8 +31,8 @@ Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
 
 *Prerequisite : NFS*
 
-  !bash
-  sudo apt-get install nfs-common
+    !bash
+    sudo apt-get install nfs-common
 
 ---
 
