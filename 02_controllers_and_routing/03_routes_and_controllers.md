@@ -34,8 +34,6 @@
     $ curl http://localhost/app_dev.php/homepage
     <html><body>Hello visitor!<body></html>
 
-![Sponge Bob Imagination](../img/spongBobImagination.jpg)
-
 ---
 
 # Route placeholders
