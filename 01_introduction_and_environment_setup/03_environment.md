@@ -31,31 +31,9 @@ Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
 
 ---
 
-# 2. Download Symfony standard edition
+# 2. Download the vagrant configuration
 
-Download the latest symfony 2 standard edition on [github](https://github.com/symfony/symfony-standard/tags) (v2.1.*).
-
-Unzip it somewhere you like.
-
-    !bash
-    adrienbrault at adrienbrault-mbp in symfony-standard-2.1.7
-    $ ll
-    total 576768
-    -rw-r--r--   1 adrienbrault  staff       1065 Jan 17 14:10 LICENSE
-    -rw-r--r--   1 adrienbrault  staff       6026 Jan 17 14:10 README.md
-    -rw-r--r--   1 adrienbrault  staff       8131 Jan 17 14:10 UPGRADE.md
-    drwxr-xr-x  14 adrienbrault  staff        476 Jan 17 14:10 app
-    -rw-r--r--   1 adrienbrault  staff       1725 Jan 17 14:10 composer.json
-    -rw-r--r--   1 adrienbrault  staff      43497 Jan 17 14:10 composer.lock
-    drwxr-xr-x   4 adrienbrault  staff        136 Jan 17 14:10 src
-    drwxr-xr-x   9 adrienbrault  staff        306 Jan 17 14:10 web
-
----
-
-# 3. Download the vagrant configuration
-
-Download the last vagrant configuration on [github](https://github.com/SUPINFO-LWP/symfony2-vagrant/tags).
-Inside our symfony application, create a vagrant folder and unzip it inside.
+Download the last vagrant configuration [on github](https://github.com/SUPINFO-LWP/vagrant-php/tags).
 
 Vagrant config powered by [vmg.slynett.com](http://vmg.slynett.com/).
 
@@ -68,7 +46,7 @@ Everything you'd need:
 
 ---
 
-# 4. Start the VM
+# 3. Start the VM
 
 * `vagrant up` starts the VM
 * `vagrant suspend` stop the VM in the current state
