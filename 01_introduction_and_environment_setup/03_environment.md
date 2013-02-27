@@ -29,6 +29,11 @@ Vagrant in a nutshell:
 
 Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/).
 
+*Prerequisite : NFS*
+
+  !bash
+  sudo apt-get install nfs-common
+
 ---
 
 # 2. Download the vagrant configuration
