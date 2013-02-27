@@ -33,11 +33,11 @@ Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and
 
 # 2. Download the vagrant configuration
 
-Download the last vagrant configuration [on github](https://github.com/SUPINFO-LWP/vagrant-php/tags).
+Download the vagrant config [on github](https://github.com/SUPINFO-LWP/vagrant-php). (based on [vmg.slynett.com](http://vmg.slynett.com/))
 
-Vagrant config powered by [vmg.slynett.com](http://vmg.slynett.com/).
+![](http://i.imgur.com/GO40a2M.png)
 
-Everything you'd need:
+Everything you'd need in a PHP project:
 
 * PHP 5.4, PHPUnit, Xdebug/Apc/Etc PHP extensions, composer
 * MySQL
