@@ -29,7 +29,7 @@ Vagrant in a nutshell:
 
 Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/).
 
-*Prerequisite : NFS*
+*Linux prerequisite : NFS*
 
     !bash
     sudo apt-get install nfs-common
@@ -51,7 +51,7 @@ Everything you'd need in a PHP project:
 
 ---
 
-# 3. Start the VM
+# 3. Vagrant commands
 
 * `vagrant up` starts the VM
 * `vagrant suspend` stop the VM in the current state

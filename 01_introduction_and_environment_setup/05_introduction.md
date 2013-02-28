@@ -137,6 +137,7 @@
 * Declare dependencies in `composer.json`
 * Install dependencies with `composer install`
 * Update dependencies with `composer update`
+* List of exact bundles' version stored in `composer.lock`
 
 ---
 
@@ -177,7 +178,8 @@
 
 [Source](http://symfony.com/doc/current/book/page_creation.html#before-you-begin-create-the-bundle)
 
-*Some bundles example*
+*Some bundles example :*
+
    * [SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle)
    * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle)
    * [FrameworkBundle](https://github.com/symfony/FrameworkBundle)
@@ -254,3 +256,9 @@
 * [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) Code convention
 
 ![RTFM](http://i0.kym-cdn.com/photos/images/newsfeed/000/017/674/rtfm_by_noptic.png?1318992465)
+
+---
+
+# Don't fuck with angry Samuel
+
+![SamuelLJ](http://i.qkme.me/3t6b6w.jpg)
