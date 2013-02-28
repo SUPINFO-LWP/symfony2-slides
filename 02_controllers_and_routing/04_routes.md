@@ -85,3 +85,35 @@ Example :
 *   _controller
 *   _format
 *   _locale
+
+---
+
+# Debug tip
+
+    !bash
+    $ php app/console router:debug
+    [router] Current routes
+    Name                      Method Pattern
+    _welcome                  ANY    /
+    _demo_login               ANY    /demo/secured/login
+    _security_check           ANY    /demo/secured/login_check
+    _demo_logout              ANY    /demo/secured/logout
+    acme_demo_secured_hello   ANY    /demo/secured/hello
+    _demo_secured_hello       ANY    /demo/secured/hello/{name}
+    _demo_secured_hello_admin ANY    /demo/secured/hello/admin/{name}
+    _demo                     ANY    /demo/
+    _demo_hello               ANY    /demo/hello/{name}
+    _demo_contact             ANY    /demo/contact
+    _wdt                      ANY    /_wdt/{token}
+    _profiler_search          ANY    /_profiler/search
+    _profiler_purge           ANY    /_profiler/purge
+    _profiler_info            ANY    /_profiler/info/{about}
+    _profiler_import          ANY    /_profiler/import
+    _profiler_export          ANY    /_profiler/export/{token}.txt
+    _profiler_phpinfo         ANY    /_profiler/phpinfo
+    _profiler_search_results  ANY    /_profiler/{token}/search/results
+    _profiler                 ANY    /_profiler/{token}
+    _profiler_redirect        ANY    /_profiler/
+    _configurator_home        ANY    /_configurator/
+    _configurator_step        ANY    /_configurator/step/{index}
+    _configurator_final       ANY    /_configurator/final
