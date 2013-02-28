@@ -58,6 +58,13 @@ Everything you'd need in a PHP project:
 * `vagrant destroy` removed the VM
 * `vagrant ssh` to ssh into the VM (windows users, use putty, vagrant@11.11.11.11 with vagrant password)
 
+So for now run
+
+    !bash
+    vagrant up
+
+And add `11.11.11.11 php.localhost` to your hosts file (Unix: `/etc/hosts` Win: `%SystemRoot%\system32\drivers\etc\hosts`).
+
 ---
 
 # Get your last tools
