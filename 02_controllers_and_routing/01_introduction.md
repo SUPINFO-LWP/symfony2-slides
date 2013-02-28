@@ -12,4 +12,8 @@
 *   The Request Object
 *   Common Controller Tasks
 
-![Brace Yourself](img/braceYourself.jpg)
+---
+
+# Winter is coming
+
+![Brace Yourself](http://i.qkme.me/3t6baw.jpg)
