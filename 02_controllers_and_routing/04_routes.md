@@ -79,12 +79,9 @@ Run
             _format: html|rss
             year: \d+
 
-The special `_format` routing parameter becomes the `Request object`.  
-
-Example :
-*   _controller
-*   _format
-*   _locale
+`/articles/en/2010/amazing-title.html` matches
+`/articles/en/2010/amazing-title` matches
+`/articles/de/2010/amazing-title.html` doesn't match
 
 ---
 
