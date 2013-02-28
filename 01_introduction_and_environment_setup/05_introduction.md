@@ -36,6 +36,50 @@
 
 ---
 
+# Bundles
+
+> A bundle is nothing more than a directory that houses everything related to a specific feature, including PHP classes,
+> configuration, and even stylesheets and Javascript files.
+
+[Source](http://symfony.com/doc/current/book/page_creation.html#before-you-begin-create-the-bundle)
+
+*Some bundles example :*
+
+   * [SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle)
+   * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle)
+   * [FrameworkBundle](https://github.com/symfony/FrameworkBundle)
+   * [SwiftmailerBundle](https://github.com/symfony/SwiftmailerBundle)
+
+---
+
+# Bundle directory structure
+
+    !bash
+    adrienbrault at adrienbrault-mbp in src/Acme/DemoBundle
+    $ tree -L 2 .
+    .
+    |-- Command
+    |   |-- AddUserCommand.php
+    |-- Controller
+    |   |-- DemoController.php
+    |   |-- SecuredController.php
+    |   `-- WelcomeController.php
+    |-- DependencyInjection
+    |   `-- AcmeDemoExtension.php
+    |-- EventListener
+    |   `-- ControllerListener.php
+    |-- Form
+    |   `-- ContactType.php
+    |-- Resources
+    |   |-- config
+    |   |-- public
+    |   `-- views
+    |-- Tests
+    |   `-- Controller
+    `-- AcmeDemoBundle.php
+
+---
+
 # App Kernel
 
     !php
@@ -168,50 +212,6 @@
         },
         ...
     }
-
----
-
-# Bundles
-
-> A bundle is nothing more than a directory that houses everything related to a specific feature, including PHP classes,
-> configuration, and even stylesheets and Javascript files.
-
-[Source](http://symfony.com/doc/current/book/page_creation.html#before-you-begin-create-the-bundle)
-
-*Some bundles example :*
-
-   * [SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle)
-   * [FOSUserBundle](https://github.com/FriendsOfSymfony/FOSUserBundle)
-   * [FrameworkBundle](https://github.com/symfony/FrameworkBundle)
-   * [SwiftmailerBundle](https://github.com/symfony/SwiftmailerBundle)
-
----
-
-# Bundle directory structure
-
-    !bash
-    adrienbrault at adrienbrault-mbp in src/Acme/DemoBundle
-    $ tree -L 2 .
-    .
-    |-- Command
-    |   |-- AddUserCommand.php
-    |-- Controller
-    |   |-- DemoController.php
-    |   |-- SecuredController.php
-    |   `-- WelcomeController.php
-    |-- DependencyInjection
-    |   `-- AcmeDemoExtension.php
-    |-- EventListener
-    |   `-- ControllerListener.php
-    |-- Form
-    |   `-- ContactType.php
-    |-- Resources
-    |   |-- config
-    |   |-- public
-    |   `-- views
-    |-- Tests
-    |   `-- Controller
-    `-- AcmeDemoBundle.php
 
 ---
 
