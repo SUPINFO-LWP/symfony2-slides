@@ -4,38 +4,26 @@
 
 # Simple URLs
 
-The `match()` and `generate()` methods form a bi-directional system.
+    !yaml
+    # app/config/routing.yml
+    blog_show:
+        pattern: /posts/{slug}
+
+.
 
     !php
-    $params = $router->match('/blog/my-blog-post');
-
-Render =>
-
-    !php
-    array(
+    $path = $this->generateUrl('blog_show', array(
         'slug' => 'my-blog-post',
-        '_controller' => 'AcmeBlogBundle:Blog:show',
-    )
+    ));
+    // $path = '/posts/my-blog-post'
 
-and
-
-    $uri = $router->generate('blog_show', array('slug' => 'my-blog-post'));
-
-Render =>
-
-`/blog/my-blog-post`
-
----
-
-# Absolute URLs
+.
 
     !php
-    $router->generate('blog_show', array('slug' => 'my-blog-post'), true);
-    // http://www.example.com/blog/my-blog-post
-
-
-    !php
-    $router->getContext()->setHost('www.example.com');
+    $path = $this->generateUrl('blog_show', array(
+        'slug' => 'my-blog-post',
+    ), true);
+    // $path = 'http://php.localhost/posts/my-blog-post'
 
 ---
 

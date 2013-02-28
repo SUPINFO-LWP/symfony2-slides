@@ -1,3 +1,7 @@
+# The Request object
+
+---
+
 # Remember $_GET ?
 
     !php
@@ -44,10 +48,7 @@
 * `$request->files` ==> `$_FILE`
 * `$request->cookies` ==> `$_COOKIE`
 * `$request->getSession()` ==> `$_SESSION`
-
-Extra:
-
-* `$request->attributes` ==> Symfony related information (_controller, _route, _route_params, etc)
+* `$request->attributes` ==> Route parameters and other information (_controller, _route, _route_params, etc)
 
 ---
 
