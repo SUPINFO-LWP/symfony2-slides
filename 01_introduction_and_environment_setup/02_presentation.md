@@ -34,6 +34,7 @@
 * [Drupal 8](http://drupal.org/) (components)
 * [Laravel 4](http://four.laravel.com/) (components)
 * [eZPublish 5](http://ez.no/Products/eZ-Publish-5-Platform)
+* [silex](http://silex.sensiolabs.org/)
 
 ---
 
