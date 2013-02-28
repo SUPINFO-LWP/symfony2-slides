@@ -52,8 +52,7 @@
     {
         return new Response('<html><body>Hello ' . $name . '!</body></html>');
     }
-
-*bash*
+.
 
     !bash
     $ curl http://localhost/app_dev.php/hello/Adrien
