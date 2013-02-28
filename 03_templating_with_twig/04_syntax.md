@@ -77,7 +77,7 @@ http://twig.sensiolabs.org/doc/functions/index.html
 
 # Named arguments
 
-*Simple named argument exemple*
+*Simple named argument example*
 
     !twig
     {% for i in range(low=1, high=10, step=2) %}
