@@ -28,7 +28,7 @@
         }
     }
 
-*bash*
+.
 
     !bash
     $ curl http://localhost/app_dev.php/homepage
