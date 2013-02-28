@@ -71,18 +71,16 @@
     namespace Acme\HelloBundle\Controller;
 
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-    // these import the "@Route" and "@Template" annotations
+    // You need to import the annotations
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
     class HelloController extends Controller
     {
         /**
          * @Route("/hello/{name}", name="_hello")
-         * @Template()
          */
         public function helloAction($name)
         {
-            return array('name' => $name);
+            ...
         }
     }
