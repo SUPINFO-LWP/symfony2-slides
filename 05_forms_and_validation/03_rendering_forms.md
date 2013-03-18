@@ -20,3 +20,20 @@
         </div>
         <p><input type="submit" value="Proposer" /></p> 
     </form>
+    
+---
+## Display field by field
+
+    {{ form_errors(form) }}
+    {{ form_row(form.content) }}
+    {{ form_rest(form) }}
+---
+## More detailed
+
+    { form_errors(form) }}
+    <div>
+        {{ form_label(form.content) }}
+        {{ form_errors(form.content) }}
+        {{ form_widget(form.content) }}
+    </div>
+    {{ form_rest(form) }}
