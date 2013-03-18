@@ -52,8 +52,7 @@
     */
     public function addAction(Request $request) {
         $fail = new Fail();
-        $form = $this->createFormBuilder($fail)
-                ->add('content', 'text')
-                ->getForm();
+        $form = $this->createForm(new FailType(), $fail);
+                
         return array('form' => $form->createView());
     }
