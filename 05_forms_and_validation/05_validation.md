@@ -25,9 +25,9 @@
     }
 
 Let's try to create a validator on $content and check if $content :
-*is not empty
-*contains at least 25 characters
-*doesn't exceed 400 characters
+* is not empty
+* contains at least 25 characters
+* doesn't exceed 400 characters
 
 ---
 ## Declare validation rules in configuration files
