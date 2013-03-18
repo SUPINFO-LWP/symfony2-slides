@@ -61,3 +61,4 @@
 ## Form fields types
 
 [List of fields types](http://symfony.com/doc/current/reference/forms/types.html)
+![megusta](http://www.pickapop.fr/doc/kit-design/288/me-gusta2.jpg)
