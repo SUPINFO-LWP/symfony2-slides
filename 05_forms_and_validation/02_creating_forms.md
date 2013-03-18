@@ -56,3 +56,8 @@
                 
         return array('form' => $form->createView());
     }
+    
+---
+## Form fields types
+
+[List of fields types](http://symfony.com/doc/current/reference/forms/types.html)
