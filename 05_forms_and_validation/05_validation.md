@@ -88,8 +88,8 @@ Let's try to create a validator on $content and check if $content :
 ---
 ## Validators in forms
 
-*Validation made when the form is bound to the HTTP Request ($form->bind($request);)
-*isValid() method counts errors retrieved by validators in bind() method
+* Validation made when the form is bound to the HTTP Request ($form->bind($request);)
+* isValid() method counts errors retrieved by validators in bind() method
 
 ---
 ## List of constraints
