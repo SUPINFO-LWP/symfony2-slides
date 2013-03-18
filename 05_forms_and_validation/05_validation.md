@@ -2,6 +2,7 @@
 
 * Validate datas entered in form
 * Datas are validated before they are written in database
+* Can be used on any object
 
 ---
 
