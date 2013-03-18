@@ -30,7 +30,7 @@ Let's try to create a validator on $content and check if $content :
 * doesn't exceed 400 characters
 
 ---
-## Declare validation rules in configuration files
+## Declaring validation rules in configuration files
     # src/Supinfail/WebBundle/Resources/config/validation.yml
     Supinfail\WebBundle\Entity\Comment:
         properties:
@@ -60,7 +60,7 @@ Let's try to create a validator on $content and check if $content :
         }
     }
 ---
-## Declare rules in entities
+## Declaring rules in entities
     
     // src/Supinfail/WebBundle/Entity/Comment.php
     namespace Supinfail\WebBundle\Entity;
