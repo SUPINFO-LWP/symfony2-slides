@@ -1,5 +1,6 @@
 ## Create a form
     !php
+    <?php
     /**
     * @Route("fail/new")
     * @Template()
