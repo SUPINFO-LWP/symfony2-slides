@@ -79,8 +79,8 @@ Run
             _format: html|rss
             year: \d+
 
-`/articles/en/2010/amazing-title.html` matches
-`/articles/en/2010/amazing-title` matches
+`/articles/en/2010/amazing-title.html` matches  
+`/articles/en/2010/amazing-title` matches  
 `/articles/de/2010/amazing-title.html` doesn't match
 
 ---
