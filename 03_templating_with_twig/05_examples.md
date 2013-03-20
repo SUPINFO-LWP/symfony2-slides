@@ -27,9 +27,8 @@ Create your data inside your controller file and send it to your view
 
         return $this->render(
             'YourBundle:YourControllerName:index.html.twig',
-            array(
-                'myArray' => $myArray,
-        ));
+            array('myArray' => $myArray)
+        );
     }
 
 ---
