@@ -15,7 +15,6 @@
     Hello Adrien !
 
 <br />
-# ![NEVER AGAIN](http://static3.fjcdn.com/thumbnails/comments/NEVER+AGAIN+_f6f7f544d771bd0d5c45078d9fc9a2dc.gif)
 
 ---
 
