@@ -9,11 +9,11 @@
     !yaml
     home:
         pattern:  /
-        defaults: { _controller: AcmeBlogBundle:Blog:index }
+        defaults: { _controller: AcmeDemoBundle:Blog:index }
 
     hello:
         pattern:  /hello/{name}
-        defaults: { _controller: AcmeBlogBundle:Hello:hello }
+        defaults: { _controller: AcmeDemoBundle:Hello:hello }
 
 First matched route always win.  
 
@@ -79,8 +79,8 @@ Run
             _format: html|rss
             year: \d+
 
-`/articles/en/2010/amazing-title.html` matches
-`/articles/en/2010/amazing-title` matches
+`/articles/en/2010/amazing-title.html` matches  
+`/articles/en/2010/amazing-title` matches  
 `/articles/de/2010/amazing-title.html` doesn't match
 
 ---

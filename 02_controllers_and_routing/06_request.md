@@ -11,11 +11,10 @@
 .
 
     !bash
-    $ curl http://localhost/name.php?name=Adrien
+    $ curl http://localhost/labo-web-sf2/web/name.php?name=Adrien
     Hello Adrien !
 
 <br />
-# ![NEVER AGAIN](http://static3.fjcdn.com/thumbnails/comments/NEVER+AGAIN+_f6f7f544d771bd0d5c45078d9fc9a2dc.gif)
 
 ---
 
@@ -35,7 +34,7 @@
 .
 
     !bash
-    $ curl http://localhost/name.php?name=Adrien
+    $ curl http://localhost/labo-web-sf2/web/name.php?name=Adrien
     Hello Adrien !
 
 ---
