@@ -11,7 +11,7 @@
 .
 
     !bash
-    $ curl http://localhost/name.php?name=Adrien
+    $ curl http://localhost/labo-web-sf2/web/name.php?name=Adrien
     Hello Adrien !
 
 <br />
@@ -35,7 +35,7 @@
 .
 
     !bash
-    $ curl http://localhost/name.php?name=Adrien
+    $ curl http://localhost/labo-web-sf2/web/name.php?name=Adrien
     Hello Adrien !
 
 ---
