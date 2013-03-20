@@ -1,13 +1,13 @@
 # Render a Twig template from a controller
 
-render->
+---
 
 # How to use it ?
 
 Bundle directory structure:
 
 	!bash
-    .
+
     |-- Command
     |   |-- AddUserCommand.php
     |-- Controller
@@ -28,7 +28,14 @@ Bundle directory structure:
     |   `-- Controller
     `-- AcmeDemoBundle.php
 
-    All your twig files will belong to YourBundle/Resources/views/ControlerName/yourActionName.html.twig
+*All your twig files will belong to YourBundle/Resources/views/YourControler/exemple.html.twig*
 
----    
+---
 
+# Render a Twig template from a controller
+
+    !php
+
+    return $this->render('NamespaceYourBundle:YourController:exemple.html.twig', array(
+            'variable' => $variable,
+    ));

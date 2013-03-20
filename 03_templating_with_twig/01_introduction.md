@@ -6,7 +6,7 @@
 
 *   What's Twig & Why using it ?
 *   How to use it ?
-* 	Syntax 
-* 	Case examples
+*   Syntax 
+*   Case examples
 
 
