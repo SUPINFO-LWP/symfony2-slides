@@ -20,7 +20,7 @@ First matched route always win.
 What will this return ?
 
     !bash
-    $ curl http://localhost/app_dev.php/hello/Adrien
+    $ curl http://localhost/labo-web-sf2/web/app_dev.php/hello/Adrien
 
 ---
 
