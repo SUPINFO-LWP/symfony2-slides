@@ -9,14 +9,14 @@
     !yaml
     homepage:
         pattern:  /homepage
-        defaults: { _controller: AcmeHelloBundle:Hello:index }
+        defaults: { _controller: AcmeDemoBundle:Hello:index }
 
 *src/Acme/HelloBundle/Controller/HelloController.php*
 
     !php
     <?php
 
-    namespace Acme\HelloBundle\Controller;
+    namespace Acme\DemoBundle\Controller;
 
     use Symfony\Component\HttpFoundation\Response;
 
