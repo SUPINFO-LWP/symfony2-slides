@@ -9,7 +9,7 @@
     blog_show:
         pattern: /posts/{slug}
 
-.
+In controllers that extend Symfony's base Controller, you can use the generateUrl() method
 
     !php
     $path = $this->generateUrl('blog_show', array(
