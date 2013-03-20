@@ -97,7 +97,7 @@ Display your data in your TWIG file
 
     {% block stylesheets %}
         {% stylesheets 'bundles/web/css/*' filter='cssrewrite' %}
-                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
         {% endstylesheets %}
     {% endblock %}
 
@@ -141,6 +141,10 @@ Display your data in your TWIG file
 *...*
 
 ---
+  
+  
+  
+    !jinja
 
     {% block javascripts %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
