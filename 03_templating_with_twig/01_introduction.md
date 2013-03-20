@@ -4,6 +4,9 @@
 
 # Plan
 
-*   Why use Twig ?
-*   Render a template from a controller
-*   Syntax
+*   What's Twig & Why using it ?
+*   How to use it ?
+* 	Syntax 
+* 	Case examples
+
+

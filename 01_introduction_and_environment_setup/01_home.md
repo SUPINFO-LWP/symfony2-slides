@@ -9,3 +9,4 @@
 * **Clément Bertillon** - *106003@supinfo.com*
 * **Djamy Tirouche** - *60845@supinfo.com*
 * **Florian Touya** - *63394@supinfo.com*
+* **Richard Tran** - *76892@supinfo.com*
