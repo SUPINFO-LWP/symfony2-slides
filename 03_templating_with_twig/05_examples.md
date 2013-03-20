@@ -2,9 +2,9 @@
 
 ---
 
-# From Controler...
+# From Controller...
 
-Create your data inside your controler file and send it to your view
+Create your data inside your controller file and send it to your view
 
     !php
 
@@ -26,7 +26,7 @@ Create your data inside your controler file and send it to your view
         );
 
         return $this->render(
-            'YourBundle:YourControlerName:index.html.twig',
+            'YourBundle:YourControllerName:index.html.twig',
             array(
                 'myArray' => $myArray,
         ));
