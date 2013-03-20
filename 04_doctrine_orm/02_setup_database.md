@@ -5,7 +5,10 @@ Setting up database
 
 ##Configuring the database
 
+    !yaml
+
     # app/config/parameters.yml
+
     parameters:
         database_driver:    pdo_mysql
         database_host:      localhost
@@ -14,6 +17,10 @@ Setting up database
         database_password:  null
 
     # ...
+
+.
+
+    !bash
 
     $ php app/console doctrine:database:create
 
@@ -24,6 +31,8 @@ Setting up database
 *Wait a minute*
 
 ---
+
+    !bash
 
     $ mysql -u root  
     $ USE supinfail;  
@@ -36,10 +45,17 @@ Setting up database
 
 ---
 
+    !yaml
+    
     #/etc/mysql/my.cnf
+
     [mysqld]
     collation-server = utf8_general_ci
     character-set-server = utf8  
+
+.
+
+    !bash
 
     $ php app/console doctrine:database:drop --force
     $ php app/console doctrine:database:create
@@ -68,20 +84,33 @@ Setting up database
       * object (serialized and stored in a CLOB field)
       * array (serialized and stored in a CLOB field)  
 
-    $ php app/console doctrine:generate:entities WebBundle  
+---
+
+##Creating entities
+
+    !bash
+
+    $ php app/console doctrine:generate:entities WebBundle
+    $ php app/console doctrine:schema:create
+
+*if the schema have already been created...*
+
+    !bash
+
     $ php app/console doctrine:schema:update --force
  
 ---
 
 ##Lifecycle Callbacks
 
+    !php
     // ...
 
     /**
      * @ORM\Entity()
      * @ORM\HasLifecycleCallbacks()
      */
-    class Fail
+    class EntityName
     {
         // ...
     }
@@ -122,4 +151,3 @@ Setting up database
 ##Practice
 
 ![badTime](http://weknowmemes.com/generator/uploads/generated/g136009871787922204.jpg)
-

@@ -62,13 +62,18 @@
 
 # Route annotations
 
+The routes need to be imported to be active as any other routing resources
+
+*app/config/routing.yml*
+
+    !yaml
+    hello:
+        resource: "@AcmeDemoBundle/Controller/HelloController.php"
+        type:     annotation
+
 *src/Acme/DemoBundle/Controller/HelloController.php*
 
     !php
-    <?php
-
-    namespace Acme\DemoBundle\Controller;
-
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     // You need to import the annotations
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
