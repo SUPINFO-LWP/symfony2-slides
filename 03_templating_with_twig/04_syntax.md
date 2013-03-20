@@ -148,4 +148,3 @@ By default in Symfony2, Twig escapes variables automaticly
         {{ True }}
     {% endif %}}
 
----

@@ -28,7 +28,7 @@ Bundle directory structure:
     |   `-- Controller
     `-- AcmeDemoBundle.php
 
-*All your twig files will belong to YourBundle/Resources/views/YourControler/exemple.html.twig*
+*All your twig files will belong to YourBundle/Resources/views/YourController/exemple.html.twig*
 
 ---
 
@@ -36,6 +36,7 @@ Bundle directory structure:
 
     !php
 
-    return $this->render('NamespaceYourBundle:YourController:exemple.html.twig', array(
-            'variable' => $variable,
-    ));
+    return $this->render(
+        'NamespaceYourBundle:YourController:exemple.html.twig', 
+        array('variable' => $variable)
+    );
