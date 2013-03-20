@@ -9,11 +9,11 @@
     !yaml
     home:
         pattern:  /
-        defaults: { _controller: AcmeBlogBundle:Blog:index }
+        defaults: { _controller: AcmeDemoBundle:Blog:index }
 
     hello:
         pattern:  /hello/{name}
-        defaults: { _controller: AcmeBlogBundle:Hello:hello }
+        defaults: { _controller: AcmeDemoBundle:Hello:hello }
 
 First matched route always win.  
 
