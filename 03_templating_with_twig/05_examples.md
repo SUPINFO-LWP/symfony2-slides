@@ -108,11 +108,14 @@ Display your data in your TWIG file
 *...*
 
 ---
+
+*...*
+
     !jinja
-    
+
                 <header id="header">
                     <nav>
-                        {% include 'WebBundle:Layout:navbar.html.twig' %}
+                        {% include 'YourBundle:Layout:navbar.html.twig' %}
                     </nav>
                 </header>
 
@@ -135,6 +138,10 @@ Display your data in your TWIG file
                 </footer>
             </section>
     {% endblock %}
+
+*...*
+
+---
 
     {% block javascripts %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
