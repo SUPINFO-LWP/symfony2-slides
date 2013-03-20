@@ -9,14 +9,14 @@
     !yaml
     homepage:
         pattern:  /homepage
-        defaults: { _controller: AcmeHelloBundle:Hello:index }
+        defaults: { _controller: AcmeDemoBundle:Hello:index }
 
-*src/Acme/HelloBundle/Controller/HelloController.php*
+*src/Acme/DemoBundle/Controller/HelloController.php*
 
     !php
     <?php
 
-    namespace Acme\HelloBundle\Controller;
+    namespace Acme\DemoBundle\Controller;
 
     use Symfony\Component\HttpFoundation\Response;
 
@@ -31,21 +31,21 @@
 .
 
     !bash
-    $ curl http://localhost/app_dev.php/homepage
+    $ curl http://localhost/labo-web-sf2/web/app_dev.php/homepage
     <html><body>Hello visitor!<body></html>
 
 ---
 
 # Route placeholders
 
-*src/Acme/HelloBundle/Controller/HelloController.php*
+*src/Acme/DemoBundle/Controller/HelloController.php*
 
     !yaml
     hello:
         pattern:  /hello/{name}
-        defaults: { _controller: AcmeBlogBundle:Hello:hello }
+        defaults: { _controller: AcmeDemoBundle:Hello:hello }
 
-*src/Acme/HelloBundle/Resources/config/routing.yml*
+*src/Acme/DemoBundle/Resources/config/routing.yml*
 
     !php
     public function helloAction($name)
@@ -55,19 +55,19 @@
 .
 
     !bash
-    $ curl http://localhost/app_dev.php/hello/Adrien
+    $ curl http://localhost/labo-web-sf2/web/app_dev.php/hello/Adrien
     <html><body>Hello Adrien!</body></html>
 
 ---
 
 # Route annotations
 
-*src/Acme/HelloBundle/Controller/HelloController.php*
+*src/Acme/DemoBundle/Controller/HelloController.php*
 
     !php
     <?php
 
-    namespace Acme\HelloBundle\Controller;
+    namespace Acme\DemoBundle\Controller;
 
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     // You need to import the annotations
