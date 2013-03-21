@@ -16,6 +16,7 @@
 ---
 
 ## Create a formType (reusable)
+    !php
     namespace Supinfail\WebBundle\Form;
     
     use Symfony\Component\Form\AbstractType;
@@ -44,6 +45,7 @@
 ---
 
 ## Use a formType in controllers
+    !php
     use Supinfail\WebBundle\Form\FailType;
     
     .......
