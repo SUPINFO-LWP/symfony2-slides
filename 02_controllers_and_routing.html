@@ -1,0 +1,1772 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Controllers and Routing</title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow|PT+Mono' rel='stylesheet' type='text/css'>
+    <!-- Styles -->
+    
+    <style type="text/css" media="print">
+      @page{margin:0;size:1024px 640px}.list{padding:0;background:none}.list *{-webkit-print-color-adjust:exact}.list .caption{display:none}.list .slide{float:none;margin:0;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none}.list .slide:before{display:none}.list .slide:after{position:absolute;left:120px;bottom:80px;color:#CCC;text-shadow:none;line-height:18px;font-weight:normal;font-size:25px}.list .slide.cover,.list .slide.shout{z-index:1}.list .slide.cover:after,.list .slide.shout:after{content:''}.list .slide.cover{background:#000}
+
+    </style>
+    <style type="text/css" media="screen, projection">
+      html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  counter-reset: paging;
+  font: 25px/2 "PT Sans", sans-serif; }
+
+.slide {
+  width: 1024px;
+  height: 768px;
+  background: white url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8cG9seWdvbiBmaWxsPSIjQzAwIiBwb2ludHM9IjAsMCA0MCwwIDQwLDEyMCAyMCwxMDAgMCwxMjAiLz4KPC9zdmc+) 865px 0 no-repeat;
+  color: #000; }
+  .slide:after {
+    position: absolute;
+    counter-increment: paging;
+    content: counter(paging, decimal-leading-zero);
+    line-height: 1; }
+  .debug .slide {
+    background: url(../images/ribbon.svg) 865px 0 no-repeat, url(../images/grid-4x3.png) no-repeat, white; }
+  .slide > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    padding: 10px 120px 0;
+    width: 784px;
+    height: 758px; }
+
+.slide h1 {
+  margin: 0 0 27px;
+  color: #666;
+  font: bold 60px/60px "PT Sans Narrow", sans-serif; }
+.slide h2 {
+  margin: 0 0 17px;
+  color: #666;
+  font: bold 50px/50px "PT Sans Narrow", sans-serif; }
+.slide p {
+  margin: 0 0 50px; }
+.slide p.note {
+  color: #999; }
+.slide a {
+  border-bottom: 0.1em solid;
+  color: #0174A7;
+  text-decoration: none; }
+.slide b, .slide strong {
+  font-weight: bold; }
+.slide i, .slide em {
+  font-style: italic; }
+.slide kbd, .slide code, .slide samp {
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: #FAFAA2;
+  color: #000;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  line-height: 1;
+  font-family: 'PT Mono', monospace; }
+.slide blockquote {
+  font-style: italic; }
+  .slide blockquote:before {
+    position: absolute;
+    margin: -16px 0 0 -80px;
+    color: #CCC;
+    font: 200px/1 "PT Sans", sans-serif;
+    content: '\201C'; }
+  .slide blockquote + figcaption {
+    margin: -50px 0 40px;
+    font-style: italic;
+    font-weight: bold; }
+.slide ol, .slide ul {
+  margin: 0 0 50px;
+  counter-reset: list; }
+  .slide ol li, .slide ul li {
+    text-indent: -2em; }
+    .slide ol li:before, .slide ul li:before {
+      display: inline-block;
+      width: 2em;
+      color: #BBB;
+      text-align: right; }
+  .slide ol ol,
+  .slide ol ul, .slide ul ol,
+  .slide ul ul {
+    margin: 0 0 0 39px; }
+.slide ul > li:before {
+  content: '\2022\00A0\00A0'; }
+.slide ul > li:lang(ru):before {
+  content: '\2014\00A0\00A0'; }
+.slide ol > li:before {
+  counter-increment: list;
+  content: counter(list) ".\00A0"; }
+.slide pre {
+  white-space: normal;
+  display: block;
+  padding: 0;
+  background: none;
+  white-space: pre;
+  line-height: 22px;
+  font-size: 16px;
+  font-family: 'PT Mono', monospace; }
+  .slide pre:before {
+    position: absolute;
+    margin: 0 0 0 -110px;
+    width: 100px;
+    color: #BBB;
+    text-align: right; }
+  .slide pre mark {
+    margin: 0 -8px;
+    padding: 3px 8px;
+    border-radius: 8px;
+    background: rgba(236, 249, 0, 0.37);
+    color: #000;
+    font-style: normal; }
+    .slide pre mark.important {
+      margin: 0;
+      background: #C00;
+      color: #FFF;
+      font-weight: normal; }
+    .slide pre mark.comment {
+      margin: 0;
+      padding: 0;
+      background: none;
+      color: #999; }
+.slide.cover {
+  background: #000; }
+  .slide.cover img, .slide.cover svg, .slide.cover video,
+  .slide.cover object, .slide.cover canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; }
+  .slide.cover.w img, .slide.cover.w svg, .slide.cover.w video,
+  .slide.cover.w object, .slide.cover.w canvas {
+    top: 50%;
+    width: 100%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  .slide.cover.h img, .slide.cover.h svg, .slide.cover.h video,
+  .slide.cover.h object, .slide.cover.h canvas {
+    left: 50%;
+    height: 100%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .slide.cover.w.h img, .slide.cover.w.h svg, .slide.cover.w.h video,
+  .slide.cover.w.h object, .slide.cover.w.h canvas {
+    top: 0;
+    left: 0;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none; }
+.slide.shout {
+  background-image: none; }
+  .slide.shout h2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+    font-size: 150px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%); }
+.slide .place {
+  position: absolute; }
+  .slide .place.t, .slide .place.m, .slide .place.b {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .slide .place.t {
+    top: 0; }
+  .slide .place.b {
+    bottom: 0; }
+  .slide .place.l, .slide .place.m, .slide .place.r {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  .slide .place.l {
+    left: 0; }
+  .slide .place.m {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  .slide .place.r {
+    right: 0;
+    left: auto; }
+  .slide .place.t.l, .slide .place.t.r, .slide .place.b.r, .slide .place.b.l {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none; }
+  .slide .place.t.l, .slide .place.t.r {
+    top: 0; }
+  .slide .place.b.r, .slide .place.b.l {
+    top: auto; }
+
+.list {
+  padding: 80px 0 40px 100px;
+  background: #585a5e url(../images/linen.png); }
+  .list:after {
+    clear: both;
+    display: block;
+    content: ''; }
+  .list .caption {
+    margin: 0 0 50px;
+    color: #3C3D40;
+    text-shadow: 0 1px 1px #8D8E90; }
+    .list .caption h1 {
+      font: bold 50px/1 "PT Sans Narrow", sans-serif; }
+    .list .caption a {
+      color: #4B86C2;
+      text-shadow: 0 -1px 1px #1f3f60;
+      text-decoration: none; }
+      .list .caption a:hover {
+        color: #5ca4ed; }
+  .list .slide {
+    position: relative;
+    float: left;
+    margin: 0 -412px -284px 0;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    transform: scale(0.5); }
+    @media (max-width: 1324px) {
+      .list .slide {
+        margin: 0 -688px -496px 0;
+        -webkit-transform: scale(0.25);
+        -moz-transform: scale(0.25);
+        -ms-transform: scale(0.25);
+        -o-transform: scale(0.25);
+        transform: scale(0.25); } }
+    .list .slide:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 512px;
+      height: 384px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.005), 0 20px 50px rgba(42, 43, 45, 0.6);
+      border-radius: 2px;
+      content: '';
+      -webkit-transform-origin: 0 0;
+      -moz-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+      -o-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scale(2);
+      -moz-transform: scale(2);
+      -ms-transform: scale(2);
+      -o-transform: scale(2);
+      transform: scale(2); }
+      @media (max-width: 1324px) {
+        .list .slide:before {
+          width: 256px;
+          height: 192px;
+          -webkit-transform: scale(4);
+          -moz-transform: scale(4);
+          -ms-transform: scale(4);
+          -o-transform: scale(4);
+          transform: scale(4); } }
+    .list .slide:after {
+      bottom: -100px;
+      left: 120px;
+      color: #3C3D40;
+      text-shadow: 0 2px 1px #8D8E90;
+      font-weight: bold;
+      font-size: 50px; }
+      @media (max-width: 1324px) {
+        .list .slide:after {
+          bottom: -180px;
+          text-shadow: 0 4px 2px #8D8E90;
+          font-size: 100px; } }
+    .list .slide:hover:before {
+      box-shadow: 0 0 0 10px rgba(42, 43, 45, 0.3), 0 20px 50px rgba(42, 43, 45, 0.6); }
+    .list .slide:target:before {
+      box-shadow: 0 0 0 1px #305f8d, 0 0 0 10px #3c7cbd, 0 20px 50px rgba(42, 43, 45, 0.6); }
+      @media (max-width: 1324px) {
+        .list .slide:target:before {
+          box-shadow: 0 0 0 1px #305f8d, 0 0 0 10px #3c7cbd, 0 20px 50px rgba(42, 43, 45, 0.6); } }
+    .list .slide:target:after {
+      text-shadow: 0 2px 1px rgba(42, 43, 45, 0.6);
+      color: #4B86C2; }
+      @media (max-width: 1324px) {
+        .list .slide:target:after {
+          text-shadow: 0 4px 2px rgba(42, 43, 45, 0.6); } }
+
+.full {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  margin: -384px 0 0 -512px;
+  width: 1024px;
+  height: 768px;
+  background: #000; }
+  .full .caption {
+    display: none; }
+  .full .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden; }
+    .full .slide:after {
+      position: absolute;
+      right: 120px;
+      bottom: 40px;
+      color: #CCC;
+      line-height: 18px;
+      font-size: 20px; }
+    .full .slide:target {
+      visibility: visible; }
+    .full .slide.cover, .full .slide.shout {
+      z-index: 1; }
+      .full .slide.cover:after, .full .slide.shout:after {
+        content: ''; }
+  .full li.next {
+    display: none; }
+    .full li.next.active {
+      display: block; }
+  .full .progress {
+    position: absolute;
+    right: 118px;
+    left: 118px;
+    bottom: 10px; }
+    .full .progress div {
+      width: 0;
+      height: 10px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+      border-radius: 5px;
+      background: rgba(177, 177, 177, 0.4);
+      -webkit-transition: width 0.2s linear;
+      -moz-transition: width 0.2s linear;
+      -o-transition: width 0.2s linear;
+      transition: width 0.2s linear; }
+
+.presenter_notes {
+  display: none; }
+
+.presenter_view .presenter_notes {
+  display: block; }
+.presenter_view .slide-content {
+  display: none; }
+
+/* Pygments default theme */
+.hll {
+  background-color: #ffffcc; }
+
+.c {
+  color: #408080;
+  font-style: italic; }
+
+/* Comment */
+.err {
+  border: 1px solid #FF0000; }
+
+/* Error */
+.k {
+  color: #008000;
+  font-weight: bold; }
+
+/* Keyword */
+.o {
+  color: #666666; }
+
+/* Operator */
+.cm {
+  color: #408080;
+  font-style: italic; }
+
+/* Comment.Multiline */
+.cp {
+  color: #BC7A00; }
+
+/* Comment.Preproc */
+.c1 {
+  color: #408080;
+  font-style: italic; }
+
+/* Comment.Single */
+.cs {
+  color: #408080;
+  font-style: italic; }
+
+/* Comment.Special */
+.gd {
+  color: #A00000; }
+
+/* Generic.Deleted */
+.ge {
+  font-style: italic; }
+
+/* Generic.Emph */
+.gr {
+  color: #FF0000; }
+
+/* Generic.Error */
+.gh {
+  color: #000080;
+  font-weight: bold; }
+
+/* Generic.Heading */
+.gi {
+  color: #00A000; }
+
+/* Generic.Inserted */
+.go {
+  color: #808080; }
+
+/* Generic.Output */
+.gp {
+  color: #000080;
+  font-weight: bold; }
+
+/* Generic.Prompt */
+.gs {
+  font-weight: bold; }
+
+/* Generic.Strong */
+.gu {
+  color: #800080;
+  font-weight: bold; }
+
+/* Generic.Subheading */
+.gt {
+  color: #0040D0; }
+
+/* Generic.Traceback */
+.kc {
+  color: #008000;
+  font-weight: bold; }
+
+/* Keyword.Constant */
+.kd {
+  color: #008000;
+  font-weight: bold; }
+
+/* Keyword.Declaration */
+.kn {
+  color: #008000;
+  font-weight: bold; }
+
+/* Keyword.Namespace */
+.kp {
+  color: #008000; }
+
+/* Keyword.Pseudo */
+.kr {
+  color: #008000;
+  font-weight: bold; }
+
+/* Keyword.Reserved */
+.kt {
+  color: #B00040; }
+
+/* Keyword.Type */
+.m {
+  color: #666666; }
+
+/* Literal.Number */
+.s {
+  color: #BA2121; }
+
+/* Literal.String */
+.na {
+  color: #7D9029; }
+
+/* Name.Attribute */
+.nb {
+  color: #008000; }
+
+/* Name.Builtin */
+.nc {
+  color: #0000FF;
+  font-weight: bold; }
+
+/* Name.Class */
+.no {
+  color: #880000; }
+
+/* Name.Constant */
+.nd {
+  color: #AA22FF; }
+
+/* Name.Decorator */
+.ni {
+  color: #999999;
+  font-weight: bold; }
+
+/* Name.Entity */
+.ne {
+  color: #D2413A;
+  font-weight: bold; }
+
+/* Name.Exception */
+.nf {
+  color: #0000FF; }
+
+/* Name.Function */
+.nl {
+  color: #A0A000; }
+
+/* Name.Label */
+.nn {
+  color: #0000FF;
+  font-weight: bold; }
+
+/* Name.Namespace */
+.nt {
+  color: #008000;
+  font-weight: bold; }
+
+/* Name.Tag */
+.nv {
+  color: #19177C; }
+
+/* Name.Variable */
+.ow {
+  color: #AA22FF;
+  font-weight: bold; }
+
+/* Operator.Word */
+.w {
+  color: #bbbbbb; }
+
+/* Text.Whitespace */
+.mf {
+  color: #666666; }
+
+/* Literal.Number.Float */
+.mh {
+  color: #666666; }
+
+/* Literal.Number.Hex */
+.mi {
+  color: #666666; }
+
+/* Literal.Number.Integer */
+.mo {
+  color: #666666; }
+
+/* Literal.Number.Oct */
+.sb {
+  color: #BA2121; }
+
+/* Literal.String.Backtick */
+.sc {
+  color: #BA2121; }
+
+/* Literal.String.Char */
+.sd {
+  color: #BA2121;
+  font-style: italic; }
+
+/* Literal.String.Doc */
+.s2 {
+  color: #BA2121; }
+
+/* Literal.String.Double */
+.se {
+  color: #BB6622;
+  font-weight: bold; }
+
+/* Literal.String.Escape */
+.sh {
+  color: #BA2121; }
+
+/* Literal.String.Heredoc */
+.si {
+  color: #BB6688;
+  font-weight: bold; }
+
+/* Literal.String.Interpol */
+.sx {
+  color: #008000; }
+
+/* Literal.String.Other */
+.sr {
+  color: #BB6688; }
+
+/* Literal.String.Regex */
+.s1 {
+  color: #BA2121; }
+
+/* Literal.String.Single */
+.ss {
+  color: #19177C; }
+
+/* Literal.String.Symbol */
+.bp {
+  color: #008000; }
+
+/* Name.Builtin.Pseudo */
+.vc {
+  color: #19177C; }
+
+/* Name.Variable.Class */
+.vg {
+  color: #19177C; }
+
+/* Name.Variable.Global */
+.vi {
+  color: #19177C; }
+
+/* Name.Variable.Instance */
+.il {
+  color: #666666; }
+
+/* Literal.Number.Integer.Long */
+
+    </style>
+    
+    
+      
+      <style type="text/css" media="screen, projection">
+        .highlight .hll { background-color: #49483e }
+.highlight  { background: #272822; color: #f8f8f2 }
+.highlight .c { color: #75715e } /* Comment */
+.highlight .err { color: #960050; background-color: #1e0010 } /* Error */
+.highlight .k { color: #66d9ef } /* Keyword */
+.highlight .l { color: #ae81ff } /* Literal */
+.highlight .n { color: #f8f8f2 } /* Name */
+.highlight .o { color: #f92672 } /* Operator */
+.highlight .p { color: #f8f8f2 } /* Punctuation */
+.highlight .cm { color: #75715e } /* Comment.Multiline */
+.highlight .cp { color: #75715e } /* Comment.Preproc */
+.highlight .c1 { color: #75715e } /* Comment.Single */
+.highlight .cs { color: #75715e } /* Comment.Special */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .kc { color: #66d9ef } /* Keyword.Constant */
+.highlight .kd { color: #66d9ef } /* Keyword.Declaration */
+.highlight .kn { color: #f92672 } /* Keyword.Namespace */
+.highlight .kp { color: #66d9ef } /* Keyword.Pseudo */
+.highlight .kr { color: #66d9ef } /* Keyword.Reserved */
+.highlight .kt { color: #66d9ef } /* Keyword.Type */
+.highlight .ld { color: #e6db74 } /* Literal.Date */
+.highlight .m { color: #ae81ff } /* Literal.Number */
+.highlight .s { color: #e6db74 } /* Literal.String */
+.highlight .na { color: #a6e22e } /* Name.Attribute */
+.highlight .nb { color: #f8f8f2 } /* Name.Builtin */
+.highlight .nc { color: #a6e22e } /* Name.Class */
+.highlight .no { color: #66d9ef } /* Name.Constant */
+.highlight .nd { color: #a6e22e } /* Name.Decorator */
+.highlight .ni { color: #f8f8f2 } /* Name.Entity */
+.highlight .ne { color: #a6e22e } /* Name.Exception */
+.highlight .nf { color: #a6e22e } /* Name.Function */
+.highlight .nl { color: #f8f8f2 } /* Name.Label */
+.highlight .nn { color: #f8f8f2 } /* Name.Namespace */
+.highlight .nx { color: #a6e22e } /* Name.Other */
+.highlight .py { color: #f8f8f2 } /* Name.Property */
+.highlight .nt { color: #f92672 } /* Name.Tag */
+.highlight .nv { color: #f8f8f2 } /* Name.Variable */
+.highlight .ow { color: #f92672 } /* Operator.Word */
+.highlight .w { color: #f8f8f2 } /* Text.Whitespace */
+.highlight .mf { color: #ae81ff } /* Literal.Number.Float */
+.highlight .mh { color: #ae81ff } /* Literal.Number.Hex */
+.highlight .mi { color: #ae81ff } /* Literal.Number.Integer */
+.highlight .mo { color: #ae81ff } /* Literal.Number.Oct */
+.highlight .sb { color: #e6db74 } /* Literal.String.Backtick */
+.highlight .sc { color: #e6db74 } /* Literal.String.Char */
+.highlight .sd { color: #e6db74 } /* Literal.String.Doc */
+.highlight .s2 { color: #e6db74 } /* Literal.String.Double */
+.highlight .se { color: #ae81ff } /* Literal.String.Escape */
+.highlight .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.highlight .si { color: #e6db74 } /* Literal.String.Interpol */
+.highlight .sx { color: #e6db74 } /* Literal.String.Other */
+.highlight .sr { color: #e6db74 } /* Literal.String.Regex */
+.highlight .s1 { color: #e6db74 } /* Literal.String.Single */
+.highlight .ss { color: #e6db74 } /* Literal.String.Symbol */
+.highlight .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.highlight .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.highlight .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.highlight .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+
+      </style>
+      
+    
+      
+      <style type="text/css" media="screen, projection">
+        .slide header:only-child h1 {
+    line-height: 180%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    height: 745px;
+    width: 768px;
+    font-size: 280%;
+}
+
+.slide header:first-child > h1 {
+    margin: 25px 0 40px;
+}
+
+.highlight {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.slide p {
+    margin: 10px 0 10px;
+}
+
+.slide code {
+    background-color: rgb(214, 214, 214);
+    border: 1px solid rgb(173, 173, 173);
+}
+
+      </style>
+      
+    
+    <!-- /Styles -->
+</head>
+<body class="list">
+    
+      <!-- slide source: 02_controllers_and_routing/01_introduction.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Controllers and Routing</h1></header>
+                
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/01_introduction.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Plan</h1></header>
+                
+                
+                    <section class="slide-content"><ul>
+<li>Requests, Controller, Response Lifecycle</li>
+<li>Controllers</li>
+<li>Routes</li>
+<li>Tunning Routes</li>
+<li>Generating URLs</li>
+<li>The Request Object</li>
+<li>Common Controller Tasks</li>
+</ul></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/02_request_controller_response.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>HTTP</h1></header>
+                
+                
+                    <section class="slide-content"><p>Symfony is an HTTP framework.</p>
+<p>Request</p>
+<div class="highlight"><pre>GET /index.html HTTP/1.1
+Host: www.example.com
+</pre></div>
+
+<p>Response</p>
+<div class="highlight"><pre>HTTP/1.1 200 OK
+Content-Length: xxx
+Content-Type: text/html; <span class="nv">charset</span><span class="o">=</span>UTF-8
+
+&lt;html&gt;
+    &lt;body&gt;
+...
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/02_request_controller_response.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Requests, Controller, Response Lifecycle</h1></header>
+                
+                
+                    <section class="slide-content"><p><img alt="schema_req-ctrl-lc" src="http://symfony.com/doc/current/_images/request-flow.png" /></p>
+<p><em><a href="http://symfony.com/doc/current/book/http_fundamentals.html#the-symfony-application-flow">Source</a></em></p></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/03_routes_and_controllers.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Routes and controllers</h1></header>
+                
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/03_routes_and_controllers.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>The simplest route/controller</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>app/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">homepage</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/homepage</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Hello</span><span class="p-Indicator">:</span><span class="nv">index</span> <span class="p-Indicator">}</span>
+</pre></div>
+
+<p><em>src/Acme/DemoBundle/Controller/HelloController.php</em></p>
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">Acme\DemoBundle\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">indexAction</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;Hello visitor!&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>.</p>
+<div class="highlight"><pre><span class="nv">$ </span>curl http://localhost/labo-web-sf2/web/app_dev.php/homepage
+&lt;html&gt;&lt;body&gt;Hello visitor!&lt;body&gt;&lt;/html&gt;
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/03_routes_and_controllers.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Route placeholders</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>src/Acme/DemoBundle/Controller/HelloController.php</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">hello</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/hello/{name}</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Hello</span><span class="p-Indicator">:</span><span class="nv">hello</span> <span class="p-Indicator">}</span>
+</pre></div>
+
+<p><em>src/Acme/DemoBundle/Resources/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="k">public</span> <span class="k">function</span> <span class="nf">helloAction</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;Hello &#39;</span> <span class="o">.</span> <span class="nv">$name</span> <span class="o">.</span> <span class="s1">&#39;!&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>.</p>
+<div class="highlight"><pre><span class="nv">$ </span>curl http://localhost/labo-web-sf2/web/app_dev.php/hello/Adrien
+&lt;html&gt;&lt;body&gt;Hello Adrien!&lt;/body&gt;&lt;/html&gt;
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/03_routes_and_controllers.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Route annotations</h1></header>
+                
+                
+                    <section class="slide-content"><p>The routes need to be imported to be active as any other routing resources</p>
+<p><em>app/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">hello</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">resource</span><span class="p-Indicator">:</span> <span class="s">&quot;@AcmeDemoBundle/Controller/HelloController.php&quot;</span>
+    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span>     <span class="l-Scalar-Plain">annotation</span>
+</pre></div>
+
+<p><em>src/Acme/DemoBundle/Controller/HelloController.php</em></p>
+<div class="highlight"><pre><span class="k">use</span> <span class="nx">Symfony\Bundle\FrameworkBundle\Controller\Controller</span><span class="p">;</span>
+<span class="c1">// You need to import the annotations</span>
+<span class="k">use</span> <span class="nx">Sensio\Bundle\FrameworkExtraBundle\Configuration\Route</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">HelloController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * @Route(&quot;/hello/{name}&quot;, name=&quot;_hello&quot;)</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">helloAction</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="o">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/04_routes.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Routing</h1></header>
+                
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/04_routes.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Adding a simple requirement</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>app/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">home</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Blog</span><span class="p-Indicator">:</span><span class="nv">index</span> <span class="p-Indicator">}</span>
+
+<span class="l-Scalar-Plain">hello</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/hello/{name}</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Hello</span><span class="p-Indicator">:</span><span class="nv">hello</span> <span class="p-Indicator">}</span>
+</pre></div>
+
+<p>First matched route always win.  </p>
+<p>What will this return ?</p>
+<div class="highlight"><pre><span class="nv">$ </span>curl http://localhost/labo-web-sf2/web/app_dev.php/hello/Adrien
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/04_routes.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Adding a HTTP requirement</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>app/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">contact</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/contact</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Main</span><span class="p-Indicator">:</span><span class="nv">contact</span> <span class="p-Indicator">}</span>
+    <span class="l-Scalar-Plain">requirements</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">_method</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">GET</span>
+
+<span class="l-Scalar-Plain">contact_process</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/contact</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Main</span><span class="p-Indicator">:</span><span class="nv">contactProcess</span> <span class="p-Indicator">}</span>
+    <span class="l-Scalar-Plain">requirements</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">_method</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">POST</span>
+</pre></div>
+
+<p>Run</p>
+<div class="highlight"><pre><span class="nv">$ </span>php app/console router:debug
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/04_routes.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Adding a language requirement</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>app/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">homepage</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">/{culture}</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Main</span><span class="p-Indicator">:</span><span class="nv">homepage</span><span class="p-Indicator">,</span> <span class="nv">culture</span><span class="p-Indicator">:</span> <span class="nv">en</span> <span class="p-Indicator">}</span>
+    <span class="l-Scalar-Plain">requirements</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">culture</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">en|fr</span>
+</pre></div>
+
+<p>/   {culture} = en<br />
+/en {culture} = en<br />
+/fr {culture} = fr<br />
+/es won't match this route  </p></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/04_routes.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Advanced Routing Example</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>app/config/routing.yml</em></p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">article_show</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/articles/{culture}/{year}/{title}.{_format}</span>
+    <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">{</span> <span class="nv">_controller</span><span class="p-Indicator">:</span> <span class="nv">AcmeDemoBundle</span><span class="p-Indicator">:</span><span class="nv">Article</span><span class="p-Indicator">:</span><span class="nv">show</span><span class="p-Indicator">,</span> <span class="nv">_format</span><span class="p-Indicator">:</span> <span class="nv">html</span> <span class="p-Indicator">}</span>
+    <span class="l-Scalar-Plain">requirements</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">culture</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">en|fr</span>
+        <span class="l-Scalar-Plain">_format</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">html|rss</span>
+        <span class="l-Scalar-Plain">year</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">\d+</span>
+</pre></div>
+
+<p><code>/articles/en/2010/amazing-title.html</code> matches<br />
+<code>/articles/en/2010/amazing-title</code> matches<br />
+<code>/articles/de/2010/amazing-title.html</code> doesn't match</p></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/04_routes.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Debug tip</h1></header>
+                
+                
+                    <section class="slide-content"><div class="highlight"><pre><span class="nv">$ </span>php app/console router:debug
+<span class="o">[</span>router<span class="o">]</span> Current routes
+Name                      Method Pattern
+_welcome                  ANY    /
+_demo_login               ANY    /demo/secured/login
+_security_check           ANY    /demo/secured/login_check
+_demo_logout              ANY    /demo/secured/logout
+acme_demo_secured_hello   ANY    /demo/secured/hello
+_demo_secured_hello       ANY    /demo/secured/hello/<span class="o">{</span>name<span class="o">}</span>
+_demo_secured_hello_admin ANY    /demo/secured/hello/admin/<span class="o">{</span>name<span class="o">}</span>
+_demo                     ANY    /demo/
+_demo_hello               ANY    /demo/hello/<span class="o">{</span>name<span class="o">}</span>
+_demo_contact             ANY    /demo/contact
+_wdt                      ANY    /_wdt/<span class="o">{</span>token<span class="o">}</span>
+_profiler_search          ANY    /_profiler/search
+_profiler_purge           ANY    /_profiler/purge
+_profiler_info            ANY    /_profiler/info/<span class="o">{</span>about<span class="o">}</span>
+_profiler_import          ANY    /_profiler/import
+_profiler_export          ANY    /_profiler/export/<span class="o">{</span>token<span class="o">}</span>.txt
+_profiler_phpinfo         ANY    /_profiler/phpinfo
+_profiler_search_results  ANY    /_profiler/<span class="o">{</span>token<span class="o">}</span>/search/results
+_profiler                 ANY    /_profiler/<span class="o">{</span>token<span class="o">}</span>
+_profiler_redirect        ANY    /_profiler/
+_configurator_home        ANY    /_configurator/
+_configurator_step        ANY    /_configurator/step/<span class="o">{</span>index<span class="o">}</span>
+_configurator_final       ANY    /_configurator/final
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/05_generating_urls.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Generating URLs</h1></header>
+                
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/05_generating_urls.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Simple URLs</h1></header>
+                
+                
+                    <section class="slide-content"><div class="highlight"><pre><span class="c1"># app/config/routing.yml</span>
+<span class="l-Scalar-Plain">blog_show</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">pattern</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/posts/{slug}</span>
+</pre></div>
+
+<p>In controllers that extend Symfony's base Controller, you can use the generateUrl() method</p>
+<div class="highlight"><pre><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">generateUrl</span><span class="p">(</span><span class="s1">&#39;blog_show&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;slug&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-blog-post&#39;</span><span class="p">,</span>
+<span class="p">));</span>
+<span class="c1">// $path = &#39;/posts/my-blog-post&#39;</span>
+</pre></div>
+
+<p>.</p>
+<div class="highlight"><pre><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">generateUrl</span><span class="p">(</span><span class="s1">&#39;blog_show&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;slug&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my-blog-post&#39;</span><span class="p">,</span>
+<span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">// $path = &#39;http://php.localhost/posts/my-blog-post&#39;</span>
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/05_generating_urls.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>URLs with query string</h1></header>
+                
+                
+                    <section class="slide-content"><p><em>When generating absolute URLs for scripts</em></p>
+<div class="highlight"><pre><span class="nv">$router</span><span class="o">-&gt;</span><span class="na">generate</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;page&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Symfony&#39;</span><span class="p">));</span>
+<span class="c1">// /blog/2?category=Symfony</span>
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/06_request.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>The Request object</h1></header>
+                
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/06_request.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Remember $_GET ?</h1></header>
+                
+                
+                    <section class="slide-content"><div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="k">echo</span> <span class="s1">&#39;Hello &#39;</span> <span class="o">.</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s1">&#39; !&#39;</span><span class="p">;</span>
+</pre></div>
+
+<p>.</p>
+<div class="highlight"><pre><span class="nv">$ </span>curl http://localhost/labo-web-sf2/web/name.php?name<span class="o">=</span>Adrien
+Hello Adrien !
+</pre></div>
+
+<p><br /></p></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/06_request.md -->
+        <section class="slide has_code">
+            <div>
+                
+                    <header><h1>Say hello to the Request object</h1></header>
+                
+                
+                    <section class="slide-content"><div class="highlight"><pre><span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+
+<span class="o">...</span>
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">helloAction</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="s1">&#39;Hello &#39;</span> <span class="o">.</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">query</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="o">.</span> <span class="s1">&#39; !&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>.</p>
+<div class="highlight"><pre><span class="nv">$ </span>curl http://localhost/labo-web-sf2/web/name.php?name<span class="o">=</span>Adrien
+Hello Adrien !
+</pre></div>
+</section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/06_request.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>$_XXX replacements</h1></header>
+                
+                
+                    <section class="slide-content"><ul>
+<li><code>$request-&gt;query</code> ==&gt; <code>$_GET</code></li>
+<li><code>$request-&gt;request</code> ==&gt; <code>$_POST</code></li>
+<li><code>$request-&gt;server</code> ==&gt; <code>$_SERVER</code></li>
+<li><code>$request-&gt;files</code> ==&gt; <code>$_FILE</code></li>
+<li><code>$request-&gt;cookies</code> ==&gt; <code>$_COOKIE</code></li>
+<li><code>$request-&gt;getSession()</code> ==&gt; <code>$_SESSION</code></li>
+<li><code>$request-&gt;attributes</code> ==&gt; Route parameters and other information (_controller, _route, _route_params, etc)</li>
+</ul></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/06_request.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Cool Request methods</h1></header>
+                
+                
+                    <section class="slide-content"><ul>
+<li><code>$request-&gt;getClientIp()</code> string xxx.xxx.xxx.xxx</li>
+<li><code>$request-&gt;getMethod()</code> string (POST, GET, etc)</li>
+<li><code>$request-&gt;isMethod('POST')</code> boolean</li>
+<li><code>$request-&gt;isXmlHttpRequest()</code> boolean</li>
+<li><code>$request-&gt;getRequestFormat()</code> string (html, json, xml, etc)</li>
+<li><code>$request-&gt;getPreferredLanguage()</code> string (en_US, fr_FR etc) based on client</li>
+</ul></section>
+                
+                
+            </div>
+        </section>
+     
+      <!-- slide source: 02_controllers_and_routing/99_questions.md -->
+        <section class="slide">
+            <div>
+                
+                    <header><h1>Any questions ?</h1></header>
+                
+                
+                    <section class="slide-content"><p><img alt="Business Cat" src="https://raw.github.com/SUPINFO-LWP/symfony2-slides/master/img/businessCat.jpg?raw=true" /></p></section>
+                
+                
+            </div>
+        </section>
+     
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+    <!-- Javascripts -->
+        
+        <script>
+        (function () {
+	var url = window.location,
+		body = document.body,
+		slides = document.querySelectorAll('.slide'),
+		progress = document.querySelector('div.progress div'),
+        presenterWin = null,
+		slideList = [],
+		timer,
+        spaces = /\s+/, a1 = [''],
+		l = slides.length, i;
+
+	for (i = 0; i < l; i++) {
+		// Slide ID's are optional. In case of missing ID we set it to the
+		// slide number
+		if (!slides[i].id) {
+			slides[i].id = i + 1;
+		}
+
+		slideList.push({
+			id: slides[i].id,
+			hasInnerNavigation: null !== slides[i].querySelector('.next'),
+			hasTiming: null != slides[i].dataset.timing
+		});
+	}
+
+    var str2array = function(s) {
+        if (typeof s == 'string' || s instanceof String) {
+            if (s.indexOf(' ') < 0) {
+                a1[0] = s;
+                return a1;
+            } else {
+                return s.split(spaces);
+            }
+        }
+        return s;
+    };
+
+    var trim = function(str) {
+        return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    };
+
+    var addClass = function(node, classStr) {
+        classStr = str2array(classStr);
+        var cls = ' ' + node.className + ' ';
+        for (var i = 0, len = classStr.length, c; i < len; ++i) {
+            c = classStr[i];
+            if (c && cls.indexOf(' ' + c + ' ') < 0) {
+                cls += c + ' ';
+            }
+        }
+        node.className = trim(cls);
+    };
+
+
+    function fullUrl(baseUrl, queryStr, slideId) {
+        var url = '';
+
+        var presenter = getParamByName('presenter');
+        if (presenter != '') {
+            url += baseUrl + "?presenter=" + presenter + "&" + queryStr;
+        } else {
+            url += baseUrl + "?" + queryStr;
+        }
+
+        url += '#' + slideId;
+        return url;
+    }
+
+    function getParamByName(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.search);
+
+        if(results == null)
+            return "";
+        else
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+	function getTransform() {
+		var denominator = Math.max(
+			body.clientWidth / window.innerWidth,
+			body.clientHeight / window.innerHeight
+		);
+
+		return 'scale(' + (1 / denominator) + ')';
+	}
+
+	function applyTransform(transform) {
+		body.style.WebkitTransform = transform;
+		body.style.MozTransform = transform;
+		body.style.msTransform = transform;
+		body.style.OTransform = transform;
+		body.style.transform = transform;
+	}
+
+	function enterSlideMode() {
+		body.classList.remove('list');
+		body.classList.add('full');
+		applyTransform(getTransform());
+	}
+
+	function enterListMode() {
+		body.classList.remove('full');
+		body.classList.add('list');
+		applyTransform('none');
+	}
+
+	function getCurrentSlideNumber() {
+		var i, l = slideList.length,
+			currentSlideId = url.hash.substr(1);
+
+		for (i = 0; i < l; ++i) {
+			if (currentSlideId === slideList[i].id) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	function scrollToSlide(slideNumber) {
+		if (-1 === slideNumber ) { return; }
+
+		var currentSlide = document.getElementById(slideList[slideNumber].id);
+
+		if (null != currentSlide) {
+			window.scrollTo(0, currentSlide.offsetTop);
+		}
+	}
+
+	function isListMode() {
+		return url.search.indexOf('full') == -1;
+	}
+
+	function normalizeSlideNumber(slideNumber) {
+		if (0 > slideNumber) {
+			return 0;
+		} else if (slideList.length <= slideNumber) {
+			return slideList.length - 1;
+		} else {
+			return slideNumber;
+		}
+	}
+
+	function updateProgress(slideNumber) {
+		if (null === progress) { return; }
+		progress.style.width = (100 / (slideList.length - 1) * normalizeSlideNumber(slideNumber)).toFixed(2) + '%';
+	}
+
+	function updateCurrentAndPassedSlides(slideNumber) {
+		var i, l = slideList.length, slide;
+		slideNumber = normalizeSlideNumber(slideNumber);
+
+		for ( i = 0; i < l; ++i ) {
+			slide = document.getElementById(slideList[i].id);
+
+			if ( i < slideNumber ) {
+				slide.classList.remove('current');
+				slide.classList.add('passed');
+			} else if ( i > slideNumber ) {
+				slide.classList.remove('passed');
+				slide.classList.remove('current');
+			} else {
+				slide.classList.remove('passed');
+				slide.classList.add('current');
+			}
+		}
+	}
+
+	function getSlideHash(slideNumber) {
+		return '#' + slideList[normalizeSlideNumber(slideNumber)].id;
+	}
+
+	function goToSlide(slideNumber) {
+		url.hash = getSlideHash(slideNumber);
+
+		if (!isListMode()) {
+			updateProgress(slideNumber);
+			updateCurrentAndPassedSlides(slideNumber);
+            if (presenterWin != null) {
+                presenterWin.postMessage('slide#' + slideNumber, '*');
+            }
+		}
+	}
+
+	function getContainingSlideId(el) {
+		var node = el;
+		while ('BODY' !== node.nodeName && 'HTML' !== node.nodeName) {
+			if (node.classList.contains('slide')) {
+				return node.id;
+			} else {
+				node = node.parentNode;
+			}
+		}
+
+		return '';
+	}
+
+	// FIXME: Renaming needed? Or just some handlers rewriting?
+	function dispatchSingleSlideMode(e) {
+		// Process links
+		// TODO: presentation links support
+		if ('A' === e.target.nodeName) {
+			e.preventDefault();
+
+			window.open(e.target.getAttribute('href'));
+			return;
+		}
+
+		var slideId = getContainingSlideId(e.target);
+
+		if ('' !== slideId && isListMode()) {
+			e.preventDefault();
+
+			// NOTE: we should update hash to get things work properly
+			url.hash = '#' + slideId;
+			history.replaceState(null, null,
+                                 fullUrl(url.pathname, 'full', slideId));
+			enterSlideMode();
+
+			updateProgress(getCurrentSlideNumber());
+			updateCurrentAndPassedSlides(getCurrentSlideNumber());
+			runSlideshowIfPresented(getCurrentSlideNumber());
+		}
+	}
+
+	function runSlideshowIfPresented(slideNumber) {
+		slideNumber = normalizeSlideNumber(slideNumber);
+
+		clearTimeout(timer);
+
+		if (slideList[slideNumber].hasTiming) {
+			// Compute number of milliseconds from format "X:Y", where X is
+			// number of minutes, and Y is number of seconds
+			var timing = document.getElementById(slideList[slideNumber].id).dataset.timing.split(':');
+			timing = parseInt(timing[0]) * 60 * 1000 + parseInt(timing[1]) * 1000;
+
+			timer = setTimeout( function () {
+				goToSlide(slideNumber + 1);
+				runSlideshowIfPresented(slideNumber + 1);
+			}, timing );
+		}
+	}
+
+	// Increases inner navigation by adding 'active' class to next inactive inner navigation item
+	function increaseInnerNavigation(slideNumber) {
+		// Shortcut for slides without inner navigation
+		if (true !== slideList[slideNumber].hasInnerNavigation) { return -1; }
+
+		var nextNodes = document.getElementById(slideList[slideNumber].id).querySelectorAll('.next:not(.active)'),
+			node;
+
+		if (0 !== nextNodes.length) {
+			node = nextNodes[0];
+			node.classList.add('active');
+			return nextNodes.length - 1;
+		} else {
+			return -1;
+		}
+	}
+
+	// Event handlers
+
+	window.addEventListener('DOMContentLoaded', function () {
+		if (!isListMode()) {
+            // "?full" is present without slide hash, so we should display
+            // first slide
+			if (-1 === getCurrentSlideNumber()) {
+				history.replaceState(null, null,
+                                     fullUrl(url.pathname, 'full',
+                                             getSlideHash(0)));
+			}
+
+			enterSlideMode();
+			updateProgress(getCurrentSlideNumber());
+			updateCurrentAndPassedSlides(getCurrentSlideNumber());
+			runSlideshowIfPresented(getCurrentSlideNumber())
+		}
+	}, false);
+
+	window.addEventListener('popstate', function (e) {
+		if (isListMode()) {
+			enterListMode();
+			scrollToSlide(getCurrentSlideNumber());
+		} else {
+			enterSlideMode();
+		}
+	}, false);
+
+	window.addEventListener('resize', function (e) {
+		if (!isListMode()) {
+			applyTransform(getTransform());
+		}
+	}, false);
+
+    window.addEventListener("message", function(e) {
+        if (e.data.indexOf("slide#") != -1) {
+                currentSlideNo = Number(e.data.replace('slide#', ''));
+                goToSlide(currentSlideNo);
+        }
+    }, false);
+
+	document.addEventListener('keydown', function (e) {
+		// Shortcut for alt, shift and meta keys
+		if (e.altKey || e.ctrlKey || e.metaKey) { return; }
+
+		var currentSlideNumber = getCurrentSlideNumber(),
+			innerNavigationCompleted = true;
+
+		switch (e.which) {
+			case 116: // F5
+			case 13: // Enter
+				if (isListMode() && -1 !== currentSlideNumber) {
+					e.preventDefault();
+
+					history.pushState(null, null,
+                                      fullUrl(url.pathname, 'full',
+                                            getSlideHash(currentSlideNumber)));
+					enterSlideMode();
+
+					updateProgress(currentSlideNumber);
+					updateCurrentAndPassedSlides(currentSlideNumber);
+					runSlideshowIfPresented(currentSlideNumber);
+				}
+			break;
+
+			case 27: // Esc
+				if (!isListMode()) {
+					e.preventDefault();
+
+					history.pushState(null, null,
+                                      url.pathname
+                                      + getSlideHash(currentSlideNumber));
+					enterListMode();
+					scrollToSlide(currentSlideNumber);
+				}
+			break;
+
+			case 33: // PgUp
+			case 38: // Up
+			case 37: // Left
+			case 72: // h
+			case 75: // k
+				e.preventDefault();
+
+				currentSlideNumber--;
+				goToSlide(currentSlideNumber);
+			break;
+
+			case 34: // PgDown
+			case 40: // Down
+			case 39: // Right
+			case 76: // l
+			case 74: // j
+				e.preventDefault();
+
+				if (!isListMode() ) {
+					// Inner navigation is "completed" if current slide have
+					// no inner navigation or inner navigation is fully shown
+					innerNavigationCompleted = !slideList[currentSlideNumber].hasInnerNavigation ||
+						-1 === increaseInnerNavigation(currentSlideNumber);
+				} else {
+					// Also inner navigation is always "completed" if we are in
+					// list mode
+					innerNavigationCompleted = true;
+				}
+				// NOTE: First of all check if there is no current slide
+				if (
+					-1 === currentSlideNumber || innerNavigationCompleted
+				) {
+					currentSlideNumber++;
+					goToSlide(currentSlideNumber);
+					// We must run slideshow only in full mode
+					if (!isListMode()) {
+						runSlideshowIfPresented(currentSlideNumber);
+					}
+				}
+			break;
+
+			case 36: // Home
+				e.preventDefault();
+
+				currentSlideNumber = 0;
+				goToSlide(currentSlideNumber);
+			break;
+
+			case 35: // End
+				e.preventDefault();
+
+				currentSlideNumber = slideList.length - 1;
+				goToSlide(currentSlideNumber);
+			break;
+
+			case 9: // Tab = +1; Shift + Tab = -1
+			case 32: // Space = +1; Shift + Space = -1
+				e.preventDefault();
+
+				currentSlideNumber += e.shiftKey ? -1 : 1;
+				goToSlide(currentSlideNumber);
+			break;
+            case 80: // p for presenter
+                presenterWin = open(window.location.pathname + '?presenter=1'
+                                    + "&full"
+                                    + getSlideHash(currentSlideNumber));
+            break;
+
+			default:
+				// Behave as usual
+		}
+	}, false);
+
+	document.addEventListener('click', dispatchSingleSlideMode, false);
+	document.addEventListener('touchend', dispatchSingleSlideMode, false);
+
+	document.addEventListener('touchstart', function (e) {
+		if (!isListMode()) {
+			var currentSlideNumber = getCurrentSlideNumber(),
+				x = e.touches[0].pageX;
+			if (x > window.innerWidth / 2) {
+				currentSlideNumber++;
+			} else {
+				currentSlideNumber--;
+			}
+
+			goToSlide(currentSlideNumber);
+		}
+	}, false);
+
+	document.addEventListener('touchmove', function (e) {
+		if (!isListMode()) {
+			e.preventDefault();
+		}
+	}, false);
+
+
+    if (getParamByName('presenter') != "") {
+        addClass(document.body, 'presenter_view');
+    }
+}());
+
+        </script>
+        
+        
+    <!-- /Javascripts -->
+
+	<!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
