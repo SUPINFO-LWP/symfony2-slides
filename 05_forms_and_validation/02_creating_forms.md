@@ -47,6 +47,7 @@
 
 ## Use a formType in controllers
     !php
+    <?php
     use Supinfail\WebBundle\Form\FailType;
     
     .......
