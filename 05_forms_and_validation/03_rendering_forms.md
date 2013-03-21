@@ -4,14 +4,14 @@
 
 ##Easiest way
 
-
+    !twig
     <form action="{{ path('my_form_action') }}" method="post"{{ form_enctype(form) }}>
       {{ form_widget(form) }}
       <p><input type="submit" value="Add" /></p> 
     </form>
 
 ---
-    
+    !twig 
     <form action="/app_dev.php/fail/new" method="post">
         <div>
             <label for="supinfail_webbundle_failtype_content" class=" required">Content</label>
@@ -24,12 +24,13 @@
 ---
 ## Display field by field
 
+    !twig
     {{ form_errors(form) }}
     {{ form_row(form.content) }}
     {{ form_rest(form) }}
 ---
 ## More detailed
-
+    !twig
     { form_errors(form) }}
     <div>
         {{ form_label(form.content) }}
