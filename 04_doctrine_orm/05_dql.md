@@ -5,43 +5,78 @@ Doctrine Query Language
 
 ##A simple example
 
-    $em = $this->getDoctrine()->getManager();
-    $query = $em
-        ->createQuery('
-            SELECT f
-            FROM WebBundle:Fail f
-            WHERE f.id > :id
-            ORDER BY f.rank DESC
-        ')
-        ->setParameter('id', '25');
+    !php
 
-    $fail = $query->getResult();
+    $failRepository = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('WebBundle:Fail');
+
+    $fails = $repository->findAll();
 
 ---
 
 ##Query a single fail
 
-    $fail = $query->getSingleResult();
-    
-*If no result are returned the getSingleResult() method throws a Doctrine\ORM\NoResultException exception*
-    
-    $query = $em
-        ->createQuery('
-            SELECT f
-            FROM WebBundle:fail f
-            WHERE f.id = :id
-        ')
-        ->setParameter('id', '2')
-        ->setMaxResults(1);
+    !php
 
-    try {
-        $fail = $query->getSingleResult();
-    } catch (\Doctrine\Orm\NoResultException $e) {
-        fail = null;
+    $failRepository = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('WebBundle:Fail');
+
+    $fails = $repository->find($id);
+    
+---
+
+##Using a query builder
+
+*In the fail repository*
+
+    !php
+
+    protected function selectFailQB()
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $qb->leftJoin('f.comments', 'c')->addSelect('c');
+        $qb->leftJoin('f.tags', 't')->addSelect('t');
+        $qb->leftJoin('f.user', 'u')->addSelect('u');
+
+        return $qb;
     }
+
+---
+
+##Using a query builder
+
+*In the fail repository*
+
+    !php
+
+    public function findFailByRankOrderByCateCreated($rank, $max = 10)
+    {
+        $qb = $this->selectFailQB();
+
+        $qb->where('f.rank > :rank');
+        $qb->setParameter('rank', $rank);
+        $qb->addOrderBy('f.createdAt', 'DESC');
+        $qb->setMaxResults($max);
+
+        return $qb->getQuery()->getResult();
+    }
+
+---
+
+##Using a query builder
+
+*In the controller*
+
+    !php
+
+    $failRepository = $this->getDoctrine()->getManager()->getRepository('WebBundle:Fail');
+
     
 ---
 
 ##Practice
 
-*Do it now* Samuel Lee Jackson Pulp Fiction
+![badTime](http://weknowmemes.com/generator/uploads/generated/g136009871787922204.jpg)

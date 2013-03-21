@@ -64,25 +64,9 @@ Setting up database
 
 ##Creating an entity class
 
-    $ php app/console doctrine:generate:entity
+    !bash
 
-   * Strings
-      * string (used for shorter strings)
-      * text (used for larger strings)
-   * Numbers
-      * integer
-      * smallint
-      * bigint
-      * decimal
-      * float
-   * Dates and Times (use a DateTime object for these fields in PHP)
-      * date
-      * time
-      * datetime
-   * Other Types
-      * boolean
-      * object (serialized and stored in a CLOB field)
-      * array (serialized and stored in a CLOB field)  
+    $ php app/console doctrine:generate:entity
 
 ---
 
@@ -98,56 +82,3 @@ Setting up database
     !bash
 
     $ php app/console doctrine:schema:update --force
- 
----
-
-##Lifecycle Callbacks
-
-    !php
-    // ...
-
-    /**
-     * @ORM\Entity()
-     * @ORM\HasLifecycleCallbacks()
-     */
-    class EntityName
-    {
-        // ...
-    }
-
-    // ...
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedValue()
-    {
-        $this->created = new \DateTime();
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setUpdatedValue()
-    {
-        $this->updated = new \DateTime();
-    }
-
-    // ...
-
----    
-
-   * preRemove
-   * postRemove
-   * prePersist
-   * postPersist
-   * preUpdate
-   * postUpdate
-   * postLoad
-   * loadClassMetadata
-
----
-
-##Practice
-
-![badTime](http://weknowmemes.com/generator/uploads/generated/g136009871787922204.jpg)
