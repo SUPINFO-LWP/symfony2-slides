@@ -7,7 +7,7 @@
 ---
 
 ## Consider the following entity with following field
-
+    !php
     // src/Supinfail/WebBundle/Entity/Comment.php
     namespace Supinfail\WebBundle\Entity;
     
@@ -31,6 +31,7 @@ Let's try to create a validator on $content and check if $content :
 
 ---
 ## Declaring validation rules in configuration files
+    !yaml
     # src/Supinfail/WebBundle/Resources/config/validation.yml
     Supinfail\WebBundle\Entity\Comment:
         properties:
@@ -44,6 +45,7 @@ Let's try to create a validator on $content and check if $content :
                     
 ---
 ## Using validator service
+    !php
     public function checkComment(){
         $comment = new Comment();
         
@@ -61,7 +63,7 @@ Let's try to create a validator on $content and check if $content :
     }
 ---
 ## Declaring rules in entities
-    
+    !php
     // src/Supinfail/WebBundle/Entity/Comment.php
     namespace Supinfail\WebBundle\Entity;
     
